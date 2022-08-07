@@ -20,11 +20,11 @@ RUN apk add jq curl && \
     # CoreProtect
     curl -OL $(curl https://api.github.com/repos/PlayPro/CoreProtect/releases/latest | jq -r '.assets[0].browser_download_url') && \
     # squaremap
-    curl -O https://jenkins.jpenilla.xyz/job/squaremap/lastSuccessfulBuild/artifact/$(curl https://jenkins.jpenilla.xyz/job/squaremap/lastStableBuild/api/json | jq -r '.artifacts | .[] | select(.fileName|test("paper")).relativePath') && \
+    curl -O https://jenkins.jpenilla.xyz/job/squaremap/lastSuccessfulBuild/artifact/$(curl https://jenkins.jpenilla.xyz/job/squaremap/lastSuccessfulBuild/api/json | jq -r '.artifacts | .[] | select(.fileName|test("paper")).relativePath') && \
     # DiscordSRV
     curl -OJ https://download.discordsrv.com/snapshot && \
     # spark
-    curl -O https://ci.lucko.me/job/spark/lastSuccessfulBuild/artifact/$(curl https://ci.lucko.me/job/spark/lastStableBuild/api/json | jq -r '.artifacts | .[] | select(.fileName|test("bukkit")).relativePath')
+    curl -O https://ci.lucko.me/job/spark/lastSuccessfulBuild/artifact/$(curl https://ci.lucko.me/job/spark/lastSuccessfulBuild/api/json | jq -r '.artifacts | .[] | select(.fileName|test("bukkit")).relativePath')
 
 # Run PaperMC
 RUN echo "eula=true" > eula.txt && \
