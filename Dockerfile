@@ -5,8 +5,7 @@ WORKDIR /tmp/papermc
 # Download packages for build
 RUN apk add \
     curl \
-    jq \
-    yq
+    jq
 
 # Download PaperMC and plugins
 RUN minecraft_version=$(curl https://api.papermc.io/v2/projects/paper | jq -r '.versions[-1]') && \
@@ -35,9 +34,5 @@ RUN echo "eula=true" > eula.txt && \
     echo "stop" | MEMORY=1G ./start.sh
 
 # Modify configs
-COPY patches/ /tmp/patches
-RUN yq -i -p=props -o=props '. *= load("/tmp/patches/server.properties")' server.properties && \
-    yq -i '. *= load("/tmp/patches/config/paper-global.yml")' config/paper-global.yml && \
-    yq -i '. *= load("/tmp/patches/config/paper-world-defaults.yml")' config/paper-world_defaults.yml && \
-    yq -i '. *= load("/tmp/patches/plugins/DiscordSRV/config.yml")' plugins/DiscordSRV/config.yml && \
-    yq -i '. *= load("/tmp/patches/plugins/DiscordSRV/messages.yml")' plugins/DiscordSRV/messages.yml && \
+COPY config/ /tmp/config
+# Git diff all config files, then replace
