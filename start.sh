@@ -1,5 +1,4 @@
 #!/bin/sh
-MINECRAFT_VERSION=1.19.2
 AIKAR_FLAGS="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true"
 JAVA_FLAGS="-Xms${MEMORY} -Xmx${MEMORY} ${AIKAR_FLAGS}"
 
@@ -22,7 +21,7 @@ coreprotect() {
 discordsrv() {
     echo https://download.discordsrv.com/snapshot
 }
-papermc() {
+paperclip() {
     api_server=https://api.papermc.io
     latest_version_build=$(curl -s ${api_server}/v2/projects/paper/versions/${MINECRAFT_VERSION}/builds | jq '.builds[-1]')
     build_id=$(echo ${latest_version_build} | jq '.build')
@@ -37,16 +36,11 @@ squaremap() {
 }
 
 # Download jars
-for url in coreprotect discordsrv papermc spark squaremap
+echo Downloading jars
+for url in coreprotect discordsrv paperclip spark squaremap
 do
-    curl -sL $($url) -o $url.jar &
+    curl -sL $($url) -o $url.jar && echo Dowloaded $url &
 done
-
-# download coreprotect plugins/coreprotect.jar & \
-# download discordsrv plugins/discordsrv.jar & \
-# download $(papermc) paperclip.jar & \
-# download spark plugins/spark.jar & \
-# download squaremap plugins/squaremap.jar
 wait
 
 # Run server
