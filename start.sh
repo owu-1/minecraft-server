@@ -27,7 +27,7 @@ spark() {
 }
 
 squaremap() {
-    from_jenkins https://jenkins.jpenilla.xyz squaremap lastSuccessfulBuild paper plugins/sqauremap.jar
+    from_jenkins https://jenkins.jpenilla.xyz squaremap lastSuccessfulBuild paper plugins/squaremap.jar
 }
 
 from_jenkins() {
@@ -45,4 +45,4 @@ coreprotect & discordsrv & papermc & spark & squaremap & wait
 
 # Run server
 echo "eula=true" > eula.txt
-java -Xms${MEMORY} -Xmx${MEMORY} ${AIKAR_FLAGS} -jar paperclip.jar
+java -Xms${MEMORY} -Xmx${MEMORY} ${AIKAR_FLAGS} -jar paperclip.jar --world-dir worlds
