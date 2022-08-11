@@ -13,4 +13,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/minecraft-image:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/minecraft-container:latest
