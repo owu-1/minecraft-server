@@ -28,6 +28,9 @@ RUN apk add --no-cache --virtual .build \
     chmod +x /start.sh && \
     echo "eula=true" > eula.txt
 USER minecraft
+# Run paperclip
 RUN echo "stop" | /start.sh && \
-    rm -R logs/* plugins/CoreProtect/database.db worlds/world* 
+    # Clean up
+    rm -R logs/* worlds/world* plugins/CoreProtect/database.db
+
 CMD ["/start.sh"]
