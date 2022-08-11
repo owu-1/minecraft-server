@@ -22,7 +22,7 @@ RUN mkdir plugins && \
 FROM eclipse-temurin:17-jre-alpine
 
 ENV MEMORY=1G
-VOLUME /data/worlds /data/plugins/squaremap/web
+VOLUME /data/worlds
 
 WORKDIR /data
 COPY --from=build /tmp/data /data
@@ -31,5 +31,6 @@ RUN addgroup -S minecraft && adduser -S -G minecraft minecraft && \
 USER minecraft
 COPY start.sh /
 RUN echo "eula=true" > eula.txt && \
-    echo "stop" | /start.sh
+    echo "stop" | /start.sh && \
+    rm -R logs/* plugins/CoreProtect/database.db worlds/world*
 CMD ["/start.sh"]
