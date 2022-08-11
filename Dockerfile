@@ -32,7 +32,3 @@ COPY start.sh /tmp/papermc
 RUN echo "eula=true" > eula.txt && \
     chmod u+x start.sh && \
     echo "stop" | MEMORY=1G ./start.sh
-
-# Modify configs
-COPY config/ /tmp/config
-# Git diff all config files, then replace
