@@ -26,10 +26,11 @@ VOLUME /data/worlds
 
 WORKDIR /data
 COPY --from=build /tmp/data /data
-RUN addgroup -S minecraft && adduser -S -G minecraft minecraft && \
-    chown -R minecraft:minecraft /data
-USER minecraft
 COPY start.sh /
+RUN addgroup -S minecraft && adduser -S -G minecraft minecraft && \
+    chown -R minecraft:minecraft /data && \
+    chmod +x /start.sh
+USER minecraft
 RUN echo "eula=true" > eula.txt && \
     echo "stop" | /start.sh && \
     rm -R logs/* plugins/CoreProtect/database.db worlds/world*
