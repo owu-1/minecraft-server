@@ -2,30 +2,23 @@ FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /tmp/papermc
 
+ARG MINECRAFT_VERSION=1.19.2
+ARG PAPERMC_BUILD=123
+ARG COREPROTECT_VERSION=21.2
+ARG SQUAREMAP_BUILD=204
+ARG DISCORDSRV_VERSION=1.26.0
+ARG DISCORDSRV_SNAPSHOT=20220809.185518-24
+
 # Download packages for build
 RUN apk add \
     curl \
     jq
 
-# Download PaperMC and plugins
-RUN minecraft_version=$(curl https://api.papermc.io/v2/projects/paper | jq -r '.versions[-1]') && \
-    papermc_all_builds=$(curl https://api.papermc.io/v2/projects/paper/versions/${minecraft_version}/builds) && \
-    papermc_build_id=$(echo ${papermc_all_builds} | jq '.builds[-1].build') && \
-    papermc_build_filename=$(echo ${papermc_all_builds} | jq -r '.builds[-1].downloads.application.name') && \
-    curl -o paperclip.jar \
-        https://api.papermc.io/v2/projects/paper/versions/${minecraft_version}/builds/${papermc_build_id}/downloads/${papermc_build_filename} && \
-
-    # Plugins
-    mkdir plugins && \
-    cd plugins && \
-    # CoreProtect
-    curl -OL $(curl https://api.github.com/repos/PlayPro/CoreProtect/releases/latest | jq -r '.assets[0].browser_download_url') && \
-    # squaremap
-    curl -O https://jenkins.jpenilla.xyz/job/squaremap/lastSuccessfulBuild/artifact/$(curl https://jenkins.jpenilla.xyz/job/squaremap/lastSuccessfulBuild/api/json | jq -r '.artifacts | .[] | select(.fileName|test("paper")).relativePath') && \
-    # DiscordSRV
-    curl -OJ https://download.discordsrv.com/snapshot && \
-    # spark
-    curl -O https://ci.lucko.me/job/spark/lastSuccessfulBuild/artifact/$(curl https://ci.lucko.me/job/spark/lastSuccessfulBuild/api/json | jq -r '.artifacts | .[] | select(.fileName|test("bukkit")).relativePath')
+# Download jars
+RUN curl -L -o paperclip.jar "https://api.papermc.io/v2/projects/paper/versions/$MINECRAFT_VERSION/builds/$PAPERMC_BUILD/downloads/paper-$MINECRAFT_VERSION-$PAPERMC_BUILD.jar" && \
+    curl -L -o coreprotect.jar "https://github.com/PlayPro/CoreProtect/releases/download/v$COREPROTECT_VERSION/CoreProtect-$COREPROTECT_VERSION.jar" && \
+    curl -L -o squaremap.jar "https://jenkins.jpenilla.xyz/job/squaremap/$SQUAREMAP_BUILD/artifact/build/libs/$(curl https://jenkins.jpenilla.xyz/job/squaremap/$SQUAREMAP_BUILD/api/json | jq -r '.artifacts | .[] | select(.fileName|test("paper")).fileName')" && \
+    curl -L -o discordsrv.jar "https://nexus.scarsz.me/content/groups/public/com/discordsrv/discordsrv/$DISCORDSRV_VERSION-SNAPSHOT/discordsrv-$DISCORDSRV_VERSION-$DISCORDSRV_SNAPSHOT.jar"
 
 # Generate patched server and configs
 COPY start.sh /tmp/papermc
