@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jre-alpine AS build
+FROM eclipse-temurin:17-jre-alpine
 
 ARG MINECRAFT_VERSION=1.19.2
 ARG PAPERMC_BUILD=124
