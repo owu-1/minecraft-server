@@ -2,6 +2,7 @@ package io.github.owu1;
 
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.ec2.Ec2Client;
+import software.amazon.awssdk.services.ec2.model.NetworkInterface;
 import software.amazon.awssdk.services.ecs.EcsClient;
 import software.amazon.awssdk.services.ecs.model.*;
 import software.amazon.awssdk.services.ec2.Ec2ClientBuilder;
@@ -11,32 +12,26 @@ import java.util.List;
 
 public class AWS {
     private final EcsClient ecsClient;
+    private final Ec2Client ec2Client;
     private final String clusterName;
     private final String serviceName;
     private final Logger logger;
 
     public AWS(Region region, String clusterName, String serviceName, Logger logger) {
         this.ecsClient = EcsClient.builder().region(region).build();
+        this.ec2Client = Ec2Client.builder().region(region).build();
         this.clusterName = clusterName;
         this.serviceName = serviceName;
         this.logger = logger;
     }
 
-    public void startServer() {
-        try {
-            logger.info("Updating service");
-            requestTask();
-            logger.info("Waiting for task status running");
-            waitForTaskRunning();
-            logger.info("Task is now running");
-            String taskArn = getTaskArn();
-            logger.info("Task Arn: {}", taskArn);
-            String networkInterfaceId = getNetworkInterfaceId(taskArn);
-            logger.info("Network Interface ID: {}", networkInterfaceId);
+    public String startServer() {
+        requestTask();
+        waitForTaskRunning();
+        String taskArn = getTaskArn();
+        String networkInterfaceId = getNetworkInterfaceId(taskArn);
 
-        } catch (EcsException e) {
-            logger.error(e.awsErrorDetails().errorMessage());
-        }
+        return getIp(networkInterfaceId);
     }
 
     private void requestTask() {
@@ -85,7 +80,10 @@ public class AWS {
     }
 
     private String getIp(String networkInterfaceId) {
-        Ec2Client ec2Client = Ec2ClientBuilder.standard
-        return "yes";
+        DescribeNetworkInterfacesRequest request = DescribeNetworkInterfacesRequest.builder()
+                .networkInterfaceIds(networkInterfaceId)
+                .build();
+        DescribeNetworkInterfacesResponse response = ec2Client.describeNetworkInterfaces(request);
+        return response.networkInterfaces().get(0).association().publicIp();
     }
 }
