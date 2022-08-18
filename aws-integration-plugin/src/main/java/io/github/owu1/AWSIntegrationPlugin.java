@@ -8,8 +8,8 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.server.ServerInfo;
 import org.slf4j.Logger;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.autoscaling.model.AutoScalingException;
 import software.amazon.awssdk.services.ec2.model.Ec2Exception;
-import software.amazon.awssdk.services.ecs.model.EcsException;
 import java.net.InetSocketAddress;
 
 @Plugin(id = "awsintegration", name = "AWS Integration", version = "0.1.0-SNAPSHOT",
@@ -25,10 +25,7 @@ public class AWSIntegrationPlugin {
         this.logger = logger;
 
         Region region = Region.AP_SOUTHEAST_2;
-        String clusterName = "minecraft-cluster3";
-        String serviceName = "minecraft-service";
-
-        aws = new AWS(region, clusterName, serviceName, logger);
+        aws = new AWS(region, "minecraft", logger);
     }
 
     @Subscribe
@@ -39,8 +36,10 @@ public class AWSIntegrationPlugin {
             logger.info("AWS IP: {}", serverIp);
             ServerInfo serverInfo = new ServerInfo("AWS", new InetSocketAddress(serverIp, 25565));
             event.setInitialServer(server.createRawRegisteredServer(serverInfo));
-        } catch (EcsException | Ec2Exception e) {
+        } catch (Ec2Exception | AutoScalingException e) {
             logger.error(e.awsErrorDetails().errorMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
         }
     }
 }

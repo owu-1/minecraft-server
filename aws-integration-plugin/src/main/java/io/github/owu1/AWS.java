@@ -1,89 +1,73 @@
 package io.github.owu1;
 
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.autoscaling.AutoScalingClient;
+import software.amazon.awssdk.services.autoscaling.model.DescribeAutoScalingGroupsRequest;
+import software.amazon.awssdk.services.autoscaling.model.DescribeAutoScalingGroupsResponse;
+import software.amazon.awssdk.services.autoscaling.model.SetDesiredCapacityRequest;
 import software.amazon.awssdk.services.ec2.Ec2Client;
-import software.amazon.awssdk.services.ec2.model.NetworkInterface;
-import software.amazon.awssdk.services.ecs.EcsClient;
-import software.amazon.awssdk.services.ecs.model.*;
-import software.amazon.awssdk.services.ec2.Ec2ClientBuilder;
-import software.amazon.awssdk.services.ec2.model.*;
 import org.slf4j.Logger;
-import java.util.List;
+import software.amazon.awssdk.services.ec2.model.DescribeInstancesRequest;
 
 public class AWS {
-    private final EcsClient ecsClient;
     private final Ec2Client ec2Client;
-    private final String clusterName;
-    private final String serviceName;
+    private final AutoScalingClient autoScalingClient;
     private final Logger logger;
+    private boolean serverStarted;
+    private final String autoScalingGroupName;
 
-    public AWS(Region region, String clusterName, String serviceName, Logger logger) {
-        this.ecsClient = EcsClient.builder().region(region).build();
+    public AWS(Region region, String autoScalingGroupName, Logger logger) {
         this.ec2Client = Ec2Client.builder().region(region).build();
-        this.clusterName = clusterName;
-        this.serviceName = serviceName;
+        this.autoScalingClient = AutoScalingClient.builder().region(region).build();
+        this.autoScalingGroupName = autoScalingGroupName;
         this.logger = logger;
+        this.serverStarted = false;
     }
 
-    public String startServer() {
-        requestTask();
-        waitForTaskRunning();
-        String taskArn = getTaskArn();
-        String networkInterfaceId = getNetworkInterfaceId(taskArn);
+    public String startServer() throws Exception {
+        if (serverStarted) {
+            throw new Exception("Server already started");
+        }
+        serverStarted = true;
 
-        return getIp(networkInterfaceId);
+        requestInstance();
+        logger.info("Requested instance");
+        waitForUp();
+        String instanceId = getInstanceId();
+        logger.info("Instance {} running", instanceId);
+        return getIp(instanceId);
     }
 
-    private void requestTask() {
-        UpdateServiceRequest request = UpdateServiceRequest.builder()
-                .cluster(clusterName)
-                .service(serviceName)
-                .desiredCount(1)
+    private void waitForUp() {
+        DescribeAutoScalingGroupsRequest request = DescribeAutoScalingGroupsRequest.builder()
+                .autoScalingGroupNames(autoScalingGroupName)
                 .build();
-        ecsClient.updateService(request);
+        autoScalingClient.waiter().waitUntilGroupInService(request);
     }
 
-    private void waitForTaskRunning() {
-        DescribeServicesRequest request = DescribeServicesRequest.builder()
-                .cluster(clusterName)
-                .services(serviceName)
+    private void requestInstance() {
+        SetDesiredCapacityRequest request = SetDesiredCapacityRequest.builder()
+                .autoScalingGroupName(autoScalingGroupName)
+                .desiredCapacity(1)
                 .build();
-        ecsClient.waiter().waitUntilServicesStable(request);
+        autoScalingClient.setDesiredCapacity(request);
     }
 
-    private String getTaskArn() {
-        ListTasksRequest request = ListTasksRequest.builder()
-                .cluster(clusterName)
-                .serviceName(serviceName)
+    private String getInstanceId() {
+        DescribeAutoScalingGroupsRequest request = DescribeAutoScalingGroupsRequest.builder()
+                .autoScalingGroupNames(autoScalingGroupName)
                 .build();
-        ListTasksResponse response = ecsClient.listTasks(request);
-        return response.taskArns().get(0);
+        DescribeAutoScalingGroupsResponse response = autoScalingClient.describeAutoScalingGroups(request);
+        return response.autoScalingGroups().get(0).instances().get(0).instanceId();
     }
 
-    private String getNetworkInterfaceId(String taskArn) {
-        DescribeTasksRequest request = DescribeTasksRequest.builder()
-                .cluster(clusterName)
-                .tasks(taskArn)
+    private String getIp(String instanceId) {
+        DescribeInstancesRequest request = DescribeInstancesRequest.builder()
+                .instanceIds(instanceId)
                 .build();
-        DescribeTasksResponse response = ecsClient.describeTasks(request);
-
-        Task task = response.tasks().get(0);
-        Attachment elasticNetworkInterface = task.attachments().stream()
-                .filter(attachment -> attachment.type().equals("ElasticNetworkInterface"))
-                .findFirst()
-                .get();
-        return elasticNetworkInterface.details().stream()
-                .filter(detail -> detail.name().equals("networkInterfaceId"))
-                .findFirst()
-                .get()
-                .value();
-    }
-
-    private String getIp(String networkInterfaceId) {
-        DescribeNetworkInterfacesRequest request = DescribeNetworkInterfacesRequest.builder()
-                .networkInterfaceIds(networkInterfaceId)
-                .build();
-        DescribeNetworkInterfacesResponse response = ec2Client.describeNetworkInterfaces(request);
-        return response.networkInterfaces().get(0).association().publicIp();
+        return ec2Client.describeInstances(request)
+                .reservations().get(0)
+                .instances().get(0)
+                .publicIpAddress();
     }
 }

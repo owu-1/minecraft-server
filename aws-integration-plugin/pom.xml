@@ -26,7 +26,7 @@
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>bom</artifactId>
-                <version>2.17.252</version>
+                <version>2.17.255</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -42,11 +42,11 @@
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
-            <artifactId>ecs</artifactId>
+            <artifactId>ec2</artifactId>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
-            <artifactId>ec2</artifactId>
+            <artifactId>autoscaling</artifactId>
         </dependency>
     </dependencies>
 
