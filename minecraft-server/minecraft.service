@@ -1,0 +1,14 @@
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/minecraft
+Type=simple
+User=minecraft
+Group=minecraft
+Environment="MEMORY=2G"
+ExecStart=/opt/minecraft/start.sh
+
+[Install]
+WantedBy=multi-user.target
