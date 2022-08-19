@@ -5,6 +5,7 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.player.PlayerChooseInitialServerEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
 import com.velocitypowered.api.proxy.server.ServerInfo;
 import org.slf4j.Logger;
 import software.amazon.awssdk.regions.Region;
@@ -18,28 +19,37 @@ public class AWSIntegrationPlugin {
     private final ProxyServer server;
     private final Logger logger;
     private final AWS aws;
+    private RegisteredServer minecraftServer;
 
     @Inject
     public AWSIntegrationPlugin(ProxyServer server, Logger logger) {
         this.server = server;
         this.logger = logger;
 
-        Region region = Region.AP_SOUTHEAST_2;
-        aws = new AWS(region, "minecraft", logger);
+        aws = new AWS(server, logger, "minecraft");
+        minecraftServer = null;
     }
 
     @Subscribe
     public void onPlayerChooseInitialServer(PlayerChooseInitialServerEvent event) {
-        try {
-            logger.info("Starting AWS");
-            String serverIp = aws.startServer();
-            logger.info("AWS IP: {}", serverIp);
-            ServerInfo serverInfo = new ServerInfo("AWS", new InetSocketAddress(serverIp, 25565));
-            event.setInitialServer(server.createRawRegisteredServer(serverInfo));
-        } catch (Ec2Exception | AutoScalingException e) {
-            logger.error(e.awsErrorDetails().errorMessage());
-        } catch (Exception e) {
-            logger.error(e.getMessage());
+        if (minecraftServer == null) {
+            try {
+                String serverIp = aws.startServer();
+                logger.info("AWS IP: {}", serverIp);
+                ServerInfo serverInfo = new ServerInfo("AWS", new InetSocketAddress(serverIp, 25565));
+                minecraftServer = server.createRawRegisteredServer(serverInfo);
+                event.setInitialServer(minecraftServer);
+            } catch (Ec2Exception | AutoScalingException e) {
+                logger.error(e.awsErrorDetails().errorMessage());
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            }
+        } else {
+            event.setInitialServer(minecraftServer);
         }
+    }
+
+    private void waitForServerUp() {
+
     }
 }

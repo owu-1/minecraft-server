@@ -22,3 +22,4 @@ sudo systemctl enable minecraft-server
 echo "stop" | MEMORY=2G ./start.sh
 # set velocity in paper config to true
 # set server.properties online-mode to false
+# set keep-spawn-loaded to false in paper-world-config for faster startup time
