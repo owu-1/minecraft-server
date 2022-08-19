@@ -2,9 +2,7 @@ package io.github.owu1;
 
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.autoscaling.AutoScalingClient;
-import software.amazon.awssdk.services.autoscaling.model.DescribeAutoScalingGroupsRequest;
-import software.amazon.awssdk.services.autoscaling.model.DescribeAutoScalingGroupsResponse;
-import software.amazon.awssdk.services.autoscaling.model.SetDesiredCapacityRequest;
+import software.amazon.awssdk.services.autoscaling.model.*;
 import software.amazon.awssdk.services.ec2.Ec2Client;
 import org.slf4j.Logger;
 import software.amazon.awssdk.services.ec2.model.DescribeInstancesRequest;
@@ -32,17 +30,9 @@ public class AWS {
 
         requestInstance();
         logger.info("Requested instance");
-        waitForUp();
-        String instanceId = getInstanceId();
+        String instanceId = waitUntilInstanceReady();
         logger.info("Instance {} running", instanceId);
         return getIp(instanceId);
-    }
-
-    private void waitForUp() {
-        DescribeAutoScalingGroupsRequest request = DescribeAutoScalingGroupsRequest.builder()
-                .autoScalingGroupNames(autoScalingGroupName)
-                .build();
-        autoScalingClient.waiter().waitUntilGroupInService(request);
     }
 
     private void requestInstance() {
@@ -53,14 +43,6 @@ public class AWS {
         autoScalingClient.setDesiredCapacity(request);
     }
 
-    private String getInstanceId() {
-        DescribeAutoScalingGroupsRequest request = DescribeAutoScalingGroupsRequest.builder()
-                .autoScalingGroupNames(autoScalingGroupName)
-                .build();
-        DescribeAutoScalingGroupsResponse response = autoScalingClient.describeAutoScalingGroups(request);
-        return response.autoScalingGroups().get(0).instances().get(0).instanceId();
-    }
-
     private String getIp(String instanceId) {
         DescribeInstancesRequest request = DescribeInstancesRequest.builder()
                 .instanceIds(instanceId)
@@ -69,5 +51,26 @@ public class AWS {
                 .reservations().get(0)
                 .instances().get(0)
                 .publicIpAddress();
+    }
+
+    private String waitUntilInstanceReady() throws Exception {
+        for (int i = 0; i < 5; i++) {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            AutoScalingGroup autoScalingGroup = autoScalingClient.describeAutoScalingGroups(
+                    r -> r.autoScalingGroupNames(autoScalingGroupName)).autoScalingGroups().get(0);
+
+            if (!autoScalingGroup.instances().isEmpty() && autoScalingGroup.instances().get(0).lifecycleState().equals(LifecycleState.IN_SERVICE))
+                return autoScalingGroup.instances().get(0).instanceId();
+            logger.info("{}", autoScalingGroup.instances());
+
+            logger.info("No response, waiting 10 seconds");
+        }
+
+        throw new Exception("Instance not ready in 5 retries");
     }
 }
