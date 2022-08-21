@@ -19,37 +19,22 @@ public class AWSIntegrationPlugin {
     private final ProxyServer server;
     private final Logger logger;
     private final AWS aws;
-    private RegisteredServer minecraftServer;
 
     @Inject
     public AWSIntegrationPlugin(ProxyServer server, Logger logger) {
         this.server = server;
         this.logger = logger;
-
         aws = new AWS(server, logger, "minecraft");
-        minecraftServer = null;
     }
 
     @Subscribe
     public void onPlayerChooseInitialServer(PlayerChooseInitialServerEvent event) {
-        if (minecraftServer == null) {
-            try {
-                String serverIp = aws.startServer();
-                logger.info("AWS IP: {}", serverIp);
-                ServerInfo serverInfo = new ServerInfo("AWS", new InetSocketAddress(serverIp, 25565));
-                minecraftServer = server.createRawRegisteredServer(serverInfo);
-                event.setInitialServer(minecraftServer);
-            } catch (Ec2Exception | AutoScalingException e) {
-                logger.error(e.awsErrorDetails().errorMessage());
-            } catch (Exception e) {
-                logger.error(e.getMessage());
-            }
-        } else {
-            event.setInitialServer(minecraftServer);
+        try {
+            event.setInitialServer(aws.getServer());
+        } catch (Ec2Exception | AutoScalingException e) {
+            logger.error(e.awsErrorDetails().errorMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
         }
-    }
-
-    private void waitForServerUp() {
-
     }
 }
