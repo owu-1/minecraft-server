@@ -11,6 +11,9 @@ import software.amazon.awssdk.services.ec2.model.Instance;
 
 import java.net.InetSocketAddress;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class AWS {
     private final ProxyServer proxyServer;
@@ -38,12 +41,14 @@ public class AWS {
         } else {
             serverRequested = true;
             createServer();
+            waitUntilServerAcceptingConnections();
             return proxyServer.getServer("minecraft").get();
         }
     }
 
     private void createServer() throws Exception {
-        String ip = requestInstance();
+//        String ip = requestInstance();
+        String ip = "127.0.0.1";
         ServerInfo serverInfo = new ServerInfo("minecraft", new InetSocketAddress(ip, 25565));
         proxyServer.registerServer(serverInfo);
     }
@@ -70,6 +75,21 @@ public class AWS {
         }
 
         throw new Exception("Instance not ready in 5 retries");
+    }
+
+    private void waitUntilServerAcceptingConnections() {
+        RegisteredServer server = proxyServer.getServer("minecraft").get();
+        for (int i = 0; i < 60; i++) {
+            try {
+                try {
+                    server.ping().get();
+                } catch (ExecutionException e) {
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private AutoScalingGroup getAutoScalingGroup() {
