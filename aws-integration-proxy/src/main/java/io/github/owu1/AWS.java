@@ -12,8 +12,6 @@ import software.amazon.awssdk.services.ec2.model.Instance;
 import java.net.InetSocketAddress;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class AWS {
     private final ProxyServer proxyServer;
