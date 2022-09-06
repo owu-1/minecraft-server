@@ -12,7 +12,6 @@ services:
       - ./worlds:/data/worlds:Z
       - ./tiles:/data/plugins/squaremap/web/tiles:Z
       - ./config:/config:Z,ro
-      - ./plugins:/plugins:Z,ro
     env_file:
       - ./minecraft.env
       - ./secrets/minecraft-secrets.env
