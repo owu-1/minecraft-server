@@ -1,0 +1,2 @@
+- Allow building in Minecraft spawn
+- Hide ip addresses that are sent to DiscordSRV console

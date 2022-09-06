@@ -1,0 +1,21 @@
+services:
+  minecraft:
+    name: minecraft  
+    image: itzg/minecraft-server:java17
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    ports:
+      - 51606:25565
+    volumes:
+      - ./data:/data:Z
+      - ./worlds:/data/worlds:Z
+      - ./config:/config:Z,ro
+      - ./plugins:/plugins:Z,ro
+    env_file: minecraft.env
+  cloudflared:
+    name: cloudflared
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    env_file: cloudflare.env
