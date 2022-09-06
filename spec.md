@@ -1,2 +1,5 @@
-- Allow building in Minecraft spawn
+- Allow building in minecraft spawn
 - Hide ip addresses that are sent to DiscordSRV console
+- Allow minecraft chat through discord
+- Allow minecraft commands through discord
+- Allow viewing the minecraft map via a browser

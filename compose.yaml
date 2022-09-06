@@ -1,6 +1,6 @@
 services:
   minecraft:
-    name: minecraft  
+    container_name: minecraft
     image: itzg/minecraft-server:java17
     restart: unless-stopped
     tty: true
@@ -10,12 +10,15 @@ services:
     volumes:
       - ./data:/data:Z
       - ./worlds:/data/worlds:Z
+      - ./tiles:/data/plugins/squaremap/web/tiles:Z
       - ./config:/config:Z,ro
       - ./plugins:/plugins:Z,ro
-    env_file: minecraft.env
+    env_file:
+      - ./minecraft.env
+      - ./secrets/minecraft-secrets.env
   cloudflared:
-    name: cloudflared
+    container_name: cloudflared
     image: cloudflare/cloudflared
     restart: unless-stopped
     command: tunnel --no-autoupdate run
-    env_file: cloudflare.env
+    env_file: ./secrets/cloudflare-secrets.env

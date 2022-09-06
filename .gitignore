@@ -1,3 +1,4 @@
-.idea
-aws-integration-proxy/target
-aws-integration-proxy/dependency-reduced-pom.xml
+data
+plugins
+secrets
+worlds
