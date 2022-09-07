@@ -1,4 +1,4 @@
-data
-plugins
-secrets
-worlds
+/data
+/plugins
+/secrets
+/worlds
