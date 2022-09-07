@@ -8,15 +8,16 @@ services:
     ports:
       - 51606:25565
     volumes:
+      - ./data/minecraft:/data:Z
       - ./data/worlds:/data/worlds:Z
       - ./data/logs:/data/logs:Z
-      - ./data/misc/banned-ips.json:/data/banned-ips.json:Z
-      - ./data/misc/banned-players.json:/data/banned-players.json:Z
-      - ./data/misc/whitelist.json:/data/whitelist.json:Z
-      - ./data/squaremap/tiles:/data/plugins/squaremap/web/tiles:Z
-      - ./data/my_worlds/inventories.yml:/data/plugins/My_Worlds/inventories.yml:Z
-      - ./data/my_worlds/worlds.yml:/data/plugins/My_Worlds/worlds.yml:Z
-      - ./data/coreprotect/database.db:/data/plugins/CoreProtect/database.db:Z
+      - ./data/lists/banned-ips.json:/data/banned-ips.json:Z
+      - ./data/lists/banned-players.json:/data/banned-players.json:Z
+      - ./data/lists/whitelist.json:/data/whitelist.json:Z
+      - ./data/plugin/squaremap/tiles:/data/plugins/squaremap/web/tiles:Z
+      - ./data/plugin/my_worlds/inventories.yml:/data/plugins/My_Worlds/inventories.yml:Z
+      - ./data/plugin/my_worlds/worlds.yml:/data/plugins/My_Worlds/worlds.yml:Z
+      - ./data/plugin/coreprotect/database.db:/data/plugins/CoreProtect/database.db:Z
       - ./config:/config:Z,ro
       - ./plugins:/plugins:Z,ro
     env_file:

@@ -1,8 +1,9 @@
 #!/bin/bash
 mkdir -p plugins
-mkdir -p data/{coreprotect,misc,my_worlds,squaremap}
+mkdir -p data/lists
+mkdir -p data/plugin/{coreprotect,my_worlds,squaremap}
 touch data/coreprotect/database.db
-touch data/misc/{banned-ips.json,banned-players.json,whitelist.json}
+touch data/lists/{banned-ips.json,banned-players.json,whitelist.json}
 touch data/my_worlds/{inventories.yml,worlds.yml}
 curl -L -o plugins/luckperms.jar https://download.luckperms.net/1453/bukkit/loader/LuckPerms-Bukkit-5.4.46.jar
 curl -L -o plugins/discordsrv.jar https://github.com/DiscordSRV/DiscordSRV/releases/download/v1.25.1/DiscordSRV-Build-1.25.1.jar
