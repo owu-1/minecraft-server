@@ -9,7 +9,7 @@ services:
       - 51606:25565
     volumes:
       - ./data/minecraft:/data:Z
-      - ./data/worlds:/data/worlds:Z
+      - ./data/worlds:/data/worlds:z
       - ./data/logs:/data/logs:Z
       - ./data/lists/banned-ips.json:/data/banned-ips.json:Z
       - ./data/lists/banned-players.json:/data/banned-players.json:Z
@@ -32,3 +32,11 @@ services:
     restart: unless-stopped
     command: tunnel --no-autoupdate run
     env_file: ./secrets/cloudflare-secrets.env
+  backup:
+    container_name: backup
+    image: offen/docker-volume-backup:v2
+    restart: unless-stopped
+    env_file: ./backup.env
+    volumes:
+      - ./data/worlds:/backups/minecraft-worlds:z,ro
+      - ./data/backups:/archive:Z
