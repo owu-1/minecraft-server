@@ -8,6 +8,10 @@
 
 `${CFG_MOTD}`
 
+#### spawn-protection
+
+`0`
+
 ## DiscordSRV
 
 ### config.yml
@@ -29,6 +33,10 @@
 `{"\\[\\/[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+(?::[0-9]+)?\\]": ""}`
 
 Hide ip addresses from the discord console
+
+#### [Experiment_WebhookChatMessageDelivery](https://docs.discordsrv.com/config/#Experiment_WebhookChatMessageDelivery)
+
+`true`
 
 ### messages.yml
 
