@@ -8,9 +8,9 @@
 
 `${CFG_MOTD}`
 
-## [DiscordSRV](https://docs.discordsrv.com/)
+## DiscordSRV
 
-### [config.yml](https://docs.discordsrv.com/config/#configyml)
+### config.yml
 
 #### [BotToken](https://docs.discordsrv.com/config/#BotToken)
 
@@ -30,7 +30,7 @@
 
 Hide ip addresses from the discord console
 
-### [messages.yml](https://docs.discordsrv.com/messages/)
+### messages.yml
 
 #### [DiscordChatChannelServerStartupMessage](https://docs.discordsrv.com/messages/#DiscordChatChannelServerStartupMessage)
 
@@ -50,7 +50,7 @@ Disable server shutdown messages
 
 Send server watchdog message to a custom userid
 
-## [MyWorlds](https://wiki.traincarts.net/index.php/MyWorlds)
+## MyWorlds
 
 ### [config.yml](https://wiki.traincarts.net/p/MyWorlds/Configuration)
 
@@ -63,3 +63,19 @@ Make all worlds hold their own inventory state. This is done to later [merge wor
 #### mainWorld
 
 `lobby`
+
+## PaperMC
+
+### paper-global.yml
+
+#### [timings.enabled](https://docs.papermc.io/paper/reference/global-configuration#timings)
+
+`false`
+
+Use spark instead of timings for performance profiling
+
+### paper-world-defaults.yml
+
+#### [anticheat.anti-xray.enabled](https://docs.papermc.io/paper/reference/world-configuration#enabled)
+
+`true`
