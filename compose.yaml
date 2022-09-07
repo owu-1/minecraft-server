@@ -22,10 +22,10 @@ services:
       - ./plugins:/plugins:Z,ro
     env_file:
       - ./minecraft.env
-      - ./secrets/minecraft-secrets.env
+      - ./secrets/minecraft_secrets.env
   cloudflared:
     container_name: cloudflared
     image: cloudflare/cloudflared
     restart: unless-stopped
     command: tunnel --no-autoupdate run
-    env_file: ./secrets/cloudflare-secrets.env
+    env_file: ./secrets/cloudflare_secrets.env
