@@ -15,8 +15,7 @@ services:
       - ./data/lists/banned-players.json:/data/banned-players.json:Z
       - ./data/lists/whitelist.json:/data/whitelist.json:Z
       - ./data/plugin/squaremap/tiles:/data/plugins/squaremap/web/tiles:Z
-      - ./data/plugin/my_worlds/inventories.yml:/data/plugins/My_Worlds/inventories.yml:Z
-      - ./data/plugin/my_worlds/worlds.yml:/data/plugins/My_Worlds/worlds.yml:Z
+      - ./data/plugin/my_worlds:/data/plugins/My_Worlds:Z  # must bind to folder. plugin tries to move tmp files into configs
       - ./data/plugin/coreprotect/database.db:/data/plugins/CoreProtect/database.db:Z
       - ./config:/config:Z,ro
       - ./plugins:/plugins:Z,ro
