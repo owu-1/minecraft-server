@@ -10,11 +10,11 @@ services:
     volumes:
       - ./data/minecraft:/data:Z
       - ./data/worlds:/data/worlds:z
-      - ./data/logs:/data/logs:Z
-      - ./data/lists/banned-ips.json:/data/banned-ips.json:Z
-      - ./data/lists/banned-players.json:/data/banned-players.json:Z
-      - ./data/lists/whitelist.json:/data/whitelist.json:Z
-      - ./data/plugins:/data/plugins:Z
+      - ./data/logs:/data/logs:z
+      - ./data/lists/banned-ips.json:/data/banned-ips.json:z
+      - ./data/lists/banned-players.json:/data/banned-players.json:z
+      - ./data/lists/whitelist.json:/data/whitelist.json:z
+      - ./data/plugins:/data/plugins:z
       - ./config:/config:Z,ro
       - ./plugins:/plugins:Z,ro
     env_file:
@@ -35,5 +35,8 @@ services:
     restart: unless-stopped
     env_file: ./backup.env
     volumes:
-      - ./data/worlds:/backup/minecraft-worlds:z,ro
+      - ./data/worlds:/backup/worlds:z,ro
+      - ./data/plugins:/backup/plugins:z,ro
+      - ./data/logs:/backup/logs:z,ro
+      - ./data/lists:/backup/lists:z,ro
       - ./data/backups:/archive:Z
