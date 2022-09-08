@@ -14,10 +14,7 @@ services:
       - ./data/lists/banned-ips.json:/data/banned-ips.json:Z
       - ./data/lists/banned-players.json:/data/banned-players.json:Z
       - ./data/lists/whitelist.json:/data/whitelist.json:Z
-      - ./data/plugin/squaremap/tiles:/data/plugins/squaremap/web/tiles:Z
-      - ./data/plugin/my-worlds:/data/plugins/My_Worlds:Z  # must bind to folder. plugin tries to move tmp files into configs
-      - ./data/plugin/coreprotect/database.db:/data/plugins/CoreProtect/database.db:Z
-      - ./data/plugin/luckperms/luckperms-h2.mv.db:/data/plugins/LuckPerms/luckperms-h2.mv.db:Z
+      - ./data/plugin:/data/plugins:Z
       - ./config:/config:Z,ro
       - ./plugins:/plugins:Z,ro
     env_file:
