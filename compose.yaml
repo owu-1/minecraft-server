@@ -14,7 +14,7 @@ services:
       - ./data/lists/banned-ips.json:/data/banned-ips.json:Z
       - ./data/lists/banned-players.json:/data/banned-players.json:Z
       - ./data/lists/whitelist.json:/data/whitelist.json:Z
-      - ./data/plugin:/data/plugins:Z
+      - ./data/plugins:/data/plugins:Z
       - ./config:/config:Z,ro
       - ./plugins:/plugins:Z,ro
     env_file:
@@ -35,5 +35,5 @@ services:
     restart: unless-stopped
     env_file: ./backup.env
     volumes:
-      - ./data/worlds:/backups/minecraft-worlds:z,ro
+      - ./data/worlds:/backup/minecraft-worlds:z,ro
       - ./data/backups:/archive:Z
