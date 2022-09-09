@@ -1,3 +1,4 @@
+mkdir -p plugins/
 curl -L -o plugins/bkcommonlib.jar https://ci.mg-dev.eu/job/BKCommonLib/1352/artifact/target/BKCommonLib-1.19.2-v1-1352.jar
 curl -L -o plugins/coreprotect.jar https://github.com/PlayPro/CoreProtect/releases/download/v21.2/CoreProtect-21.2.jar
 curl -L -o plugins/discordsrv.jar https://github.com/DiscordSRV/DiscordSRV/releases/download/v1.25.1/DiscordSRV-Build-1.25.1.jar

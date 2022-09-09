@@ -8,13 +8,7 @@ services:
     ports:
       - 51606:25565
     volumes:
-      - ./data/minecraft:/data:Z
-      - ./data/worlds:/data/worlds:z
-      - ./data/logs:/data/logs:z
-      - ./data/lists/banned-ips.json:/data/banned-ips.json:z
-      - ./data/lists/banned-players.json:/data/banned-players.json:z
-      - ./data/lists/whitelist.json:/data/whitelist.json:z
-      - ./data/plugins:/data/plugins:z
+      - ./data:/data:Z
       - ./config:/config:Z,ro
       - ./plugins:/plugins:Z,ro
     env_file:
@@ -35,8 +29,4 @@ services:
     restart: unless-stopped
     env_file: ./backup.env
     volumes:
-      - ./data/worlds:/backup/worlds:z,ro
-      - ./data/plugins:/backup/plugins:z,ro
-      - ./data/logs:/backup/logs:z,ro
-      - ./data/lists:/backup/lists:z,ro
-      - ./data/backups:/archive:Z
+      - ./data:/backup/data:Z,ro
