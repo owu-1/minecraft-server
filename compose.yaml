@@ -6,7 +6,7 @@ services:
     tty: true
     stdin_open: true
     ports:
-      - 51606:25565
+      - 25565:25565
     volumes:
       - ./data:/data:Z
       - ./config:/config:Z,ro
