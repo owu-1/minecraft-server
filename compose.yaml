@@ -30,3 +30,4 @@ services:
     env_file: ./backup.env
     volumes:
       - ./data:/backup/data:Z,ro
+      - ./backups:/archive
