@@ -72,6 +72,20 @@ Make all worlds hold their own inventory state. This is done to later [merge wor
 
 `lobby`
 
+### defaultproperties.yml
+
+#### keepSpawnLoaded
+
+`false`
+
+Don't waste memory keeping spawn areas loaded
+
+#### rememberlastplayerpos
+
+`true`
+
+Most of the time we want to remember the player location
+
 ## PaperMC
 
 ### paper-global.yml

@@ -1,0 +1,23 @@
+#> This file contains the default world properties applied when loading or creating completely new worlds
+#> All the nodes found in the worlds.yml can be set here
+#> To set environment/worldtype-specific settings, add a new node with this name
+keepSpawnLoaded: false
+gamemode: NONE
+rememberlastplayerpos: true
+pvp: true
+operators: []
+deniedCreatures: []
+hunger: true
+formIce: true
+formSnow: true
+difficulty: NORMAL
+reloadWhenEmpty: false
+bedRespawnEnabled: true
+advancementsEnabled: true
+advancementsSilent: false
+
+# All settings applied to worlds with the normal environment
+# You can add all the same world settings here and they will override the main defaults
+# You can use multiple environments, of which nether, the_end and even nether_flat
+normal:
+  gamemode: NONE
