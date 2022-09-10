@@ -3,7 +3,7 @@
 #> To set environment/worldtype-specific settings, add a new node with this name
 keepSpawnLoaded: false
 gamemode: NONE
-rememberlastplayerpos: true
+rememberlastplayerpos: false
 pvp: true
 operators: []
 deniedCreatures: []
