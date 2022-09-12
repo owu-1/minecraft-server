@@ -1,6 +1,6 @@
-sudo git pull
-sudo chmod +x mods.sh
-sudo chmod +x updaterepo.sh
-sudo chmod +x restart.sh
-sudo ./mods.sh
-sudo ./restart.sh
+git push
+chmod +x mods.sh
+chmod +x updaterepo.sh
+chmod +x restart.sh
+./mods.sh
+./restart.sh
