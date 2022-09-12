@@ -6,4 +6,4 @@ curl -L -o plugins/luckperms.jar https://download.luckperms.net/1453/bukkit/load
 curl -L -o plugins/myworlds.jar https://ci.mg-dev.eu/job/MyWorlds/168/artifact/target/MyWorlds-1.19.2-v1-SNAPSHOT-168.jar
 curl -L -o plugins/spark.jar https://ci.lucko.me/job/spark/336/artifact/spark-bukkit/build/libs/spark-1.9.36-bukkit.jar
 curl -L -o plugins/squaremap.jar https://github.com/jpenilla/squaremap/releases/download/v1.1.8/squaremap-paper-mc1.19.2-1.1.8.jar
-curl -L -o plugins/voicechat.jar https://www.curseforge.com/minecraft/bukkit-plugins/simple-voice-chat/download/3939607/file
+curl -L -o plugins/voicechat.jar https://cdn.modrinth.com/data/9eGKb6K1/versions/bukkit-1.19.2-2.3.6/voicechat-bukkit-1.19.2-2.3.6.jar
