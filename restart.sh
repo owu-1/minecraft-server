@@ -1,1 +1,1 @@
-sudo docker-compose restart minecraft
+docker-compose restart minecraft
