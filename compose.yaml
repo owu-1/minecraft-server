@@ -9,7 +9,7 @@ services:
       - 25565:25565
       - 24454:24454
     volumes:
-      - ./data:/data:Z
+      - ./data:/data:z
       - ./config:/config:Z,ro
       - ./plugins:/plugins:Z,ro
     env_file:
@@ -30,5 +30,5 @@ services:
     restart: unless-stopped
     env_file: ./backup.env
     volumes:
-      - ./data:/backup/data:Z,ro
+      - ./data:/backup/data:z,ro
       - ./backups:/archive
