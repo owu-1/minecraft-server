@@ -12,6 +12,10 @@
 
 `0`
 
+#### difficulty
+
+`hard`
+
 ## DiscordSRV
 
 ### config.yml
