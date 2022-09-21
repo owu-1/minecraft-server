@@ -32,9 +32,13 @@
 
 `${CFG_DISCORDSRV_CONSOLE_CHANNEL_ID}`
 
+#### [DiscordGameStatus](https://docs.discordsrv.com/config/#DiscordGameStatus)
+
+`["on awooo.tk"]`
+
 #### [DiscordConsoleChannelFilters](https://docs.discordsrv.com/config/#DiscordConsoleChannelFilters)
 
-`{"\\[\\/[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+(?::[0-9]+)?\\]": ""}`
+`{"\\[\\/[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+(?::[0-9]+)?\\]": "", ".*ERROR DiscordSRV.*": ""}`
 
 Hide ip addresses from the discord console
 
