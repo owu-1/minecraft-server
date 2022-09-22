@@ -1,9 +1,25 @@
-mkdir -p plugins/
-curl -L -o plugins/bkcommonlib.jar https://ci.mg-dev.eu/job/BKCommonLib/1352/artifact/target/BKCommonLib-1.19.2-v1-1352.jar
-curl -L -o plugins/coreprotect.jar https://github.com/PlayPro/CoreProtect/releases/download/v21.2/CoreProtect-21.2.jar
-curl -L -o plugins/discordsrv.jar https://github.com/DiscordSRV/DiscordSRV/releases/download/v1.25.1/DiscordSRV-Build-1.25.1.jar
-curl -L -o plugins/luckperms.jar https://download.luckperms.net/1453/bukkit/loader/LuckPerms-Bukkit-5.4.46.jar
-curl -L -o plugins/myworlds.jar https://ci.mg-dev.eu/job/MyWorlds/168/artifact/target/MyWorlds-1.19.2-v1-SNAPSHOT-168.jar
-curl -L -o plugins/spark.jar https://ci.lucko.me/job/spark/336/artifact/spark-bukkit/build/libs/spark-1.9.36-bukkit.jar
-curl -L -o plugins/squaremap.jar https://github.com/jpenilla/squaremap/releases/download/v1.1.8/squaremap-paper-mc1.19.2-1.1.8.jar
-curl -L -o plugins/voicechat.jar https://cdn.modrinth.com/data/9eGKb6K1/versions/bukkit-1.19.2-2.3.6/voicechat-bukkit-1.19.2-2.3.6.jar
+#!/bin/bash
+
+# GitHub Releases
+# Usage: gitrel user/repo destination
+gitrel() { echo --url $(curl -s https://api.github.com/repos/$1/releases | jq -r '.[0].assets[].browser_download_url') | curl -sLo $2 --config -;}
+
+# Modrinth
+# Usage: modrinth project loader destination
+modrinth() { curl -sLo $3 $(curl -s "https://api.modrinth.com/v2/project/$1/version?loaders=\[%22$2%22\]" | jq -r '.[0]'.files[0].url);}
+
+# Jenkins
+# Usage: jenkins api project fileNameTest
+jenkins(){ api=$1;job=$2;filename_test=$3;relative_url=$(curl -s $api/job/$job/lastSuccessfulBuild/api/json | jq -r --arg filename_test $filename_test '.artifacts | .[] | select(.fileName|test($filename_test)).relativePath');echo $api/job/$job/lastSuccessfulBuild/artifact/$relative_url;}
+
+mkdir -p plugins
+
+curl -sLo plugins/bkcommonlib.jar $(jenkins https://ci.mg-dev.eu BKCommonLib jar) &
+gitrel PlayPro/CoreProtect plugins/coreprotect.jar &
+gitrel DiscordSRV/DiscordSRV plugins/discordsrv.jar &
+curl -sLo plugins/luckperms.jar $(jenkins https://ci.lucko.me LuckPerms Bukkit luckperms.jar | cut -d ' ' -f1) &
+curl -sLo plugins/myworlds.jar $(jenkins https://ci.mg-dev.eu MyWorlds jar) &
+curl -sLo plugins/spark.jar $(jenkins https://ci.lucko.me spark bukkit) &
+gitrel jpenilla/squaremap plugins/squaremap.jar &
+modrinth simple-voice-chat bukkit plugins/voicechat.jar &
+wait
