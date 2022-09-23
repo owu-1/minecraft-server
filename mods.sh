@@ -6,7 +6,7 @@ gitrel() { echo --url $(curl -s https://api.github.com/repos/$1/releases | jq -r
 
 # Modrinth
 # Usage: modrinth project loader destination
-modrinth() { curl -sLo $3 $(curl -s "https://api.modrinth.com/v2/project/$1/version?loaders=\[%22$2%22\]" | jq -r '.[0]'.files[0].url);}
+modrinth() { curl -sLo $3 $(curl -s "https://api.modrinth.com/v2/project/$1/version?loaders=\[%22$2%22\]&game_versions=\[%22$VERSION%22\]" | jq -r '.[0]'.files[0].url);}
 
 # Jenkins
 # Usage: jenkins api project fileNameTest
