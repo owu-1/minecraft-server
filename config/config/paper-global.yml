@@ -36,7 +36,7 @@ commands:
 console:
   enable-brigadier-completions: true
   enable-brigadier-highlighting: true
-  has-all-permissions: false
+  has-all-permissions: true
 item-validation:
   book:
     author: 8192
@@ -50,7 +50,7 @@ item-validation:
   resolve-selectors-in-books: false
 logging:
   deobfuscate-stacktraces: true
-  log-player-ip-addresses: true
+  log-player-ip-addresses: false
   use-rgb-for-named-text-colors: true
 messages:
   kick:
@@ -94,7 +94,7 @@ proxies:
     secret: ''
 scoreboards:
   save-empty-scoreboard-teams: false
-  track-plugin-scoreboards: false
+  track-plugin-scoreboards: true
 spam-limiter:
   incoming-packet-threshold: 300
   recipe-spam-increment: 1
