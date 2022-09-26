@@ -193,7 +193,7 @@ DiscordChatChannelListCommandAllPlayersSeparator: ", "
 # Available placeholders for PlayerJoin messages:
 # %message%:        join message as seen in-game
 #
-MinecraftPlayerJoinMessage:
+MinecraftPlayerJoinMessage: 
   Enabled: true
   Webhook:
     Enable: false
@@ -222,7 +222,7 @@ MinecraftPlayerJoinMessage:
 # Available placeholders for PlayerFirstJoin messages:
 # %message%:        join message as seen in-game
 #
-MinecraftPlayerFirstJoinMessage:
+MinecraftPlayerFirstJoinMessage: 
   Enabled: true
   Webhook:
     Enable: false
@@ -251,7 +251,7 @@ MinecraftPlayerFirstJoinMessage:
 # Available placeholders for PlayerLeave messages:
 # %message%:        leave message as seen in-game
 #
-MinecraftPlayerLeaveMessage:
+MinecraftPlayerLeaveMessage: 
   Enabled: true
   Webhook:
     Enable: false
@@ -281,7 +281,7 @@ MinecraftPlayerLeaveMessage:
 # %deathmessage%: raw death message
 # %world%:        the name of the world the user died in
 #
-MinecraftPlayerDeathMessage:
+MinecraftPlayerDeathMessage: 
   Enabled: true
   Webhook:
     Enable: false
@@ -311,7 +311,7 @@ MinecraftPlayerDeathMessage:
 # %achievement%: title of the achievement/advancement
 # %world%:       the name of the world the user is in
 #
-MinecraftPlayerAchievementMessage:
+MinecraftPlayerAchievementMessage: 
   Enabled: true
   Webhook:
     Enable: false
@@ -409,11 +409,15 @@ ServerWatchdogMessage: "<t:%timestamp%:R> <@${CFG_DISCORDSRV_USERID}>, the serve
 # Available placeholders:
 # CodeGenerated:                %code%:         the code generated for the player to link their account with
 #                               %botname%:      the name of the bot on Discord
+# UnknownCode/InvalidCode:      %code%:         the code generated for the player to link their account with
+#                               %mention%:      the mention to Discord account
 # DiscordAccountLinked:         %name%:         the name of the Minecraft player that the user's Discord account was linked to
 #                               %displayname%:  the display name of the Minecraft player that the user's Discord account was linked to
 #                               %uuid%:         the uuid of the Minecraft player that the user's Discord account was linked to
+#                               %mention%:      the mention to Discord account
 # DiscordAccountAlreadyLinked:  %uuid%:         the Minecraft uuid of the user's linked Minecraft account
 #                               %username%:     the Minecraft username of the user's linked Minecraft account
+#                               %mention%:      the mention to Discord account
 # DiscordLinkedAccountRequired  %message%:      the message the user was not able to send because they were not linked
 # MinecraftAccountLinked:       %id%:           the discord id of the Discord user that the user's Minecraft account was linked to
 #                               %username%:     the discord name of the Discord user that the user's Minecraft account was linked to
