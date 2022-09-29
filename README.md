@@ -19,13 +19,13 @@ BotToken: ${CFG_DISCORDSRV_BOT_TOKEN}
 Channels: {"global": "${CFG_DISCORDSRV_GLOBAL_CHANNEL_ID}"}
 DiscordConsoleChannelId: ${CFG_DISCORDSRV_CONSOLE_CHANNEL_ID}
 DiscordGameStatus: ["on awooo.tk"]
-DiscordConsoleChannelFilters: {"\\[\\/[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+(?::[0-9]+)?\\]": "", ".*ERROR DiscordSRV.*": ""}
+DiscordConsoleChannelFilters: {".*ERROR DiscordSRV.*": ""}
 Experiment_WebhookChatMessageDelivery: true
 ```
 
 #### [DiscordConsoleChannelFilters](https://docs.discordsrv.com/config/#DiscordConsoleChannelFilters)
 
-Hide IP addresses from Discord console
+Hide error messages when the internet drops out
 
 ### [messages.yml](https://docs.discordsrv.com/messages)
 
@@ -77,10 +77,6 @@ Don't waste memory keeping spawn areas loaded
 ```yaml
 timings:
     enabled: false
-console:
-    has-all-permissions: true
-logging:
-    log-player-ip-addresses: false
 scoreboards:
     track-plugin-scoreboards: true
 unsupported-settings:
@@ -91,10 +87,6 @@ unsupported-settings:
 #### [timings.enabled](https://docs.papermc.io/paper/reference/global-configuration#enabled-1)
 
 Use spark instead of timings for performance profiling
-
-#### [logging.log-player-ip-addresses](https://docs.papermc.io/paper/reference/global-configuration#log-player-ip-addresses)
-
-For privacy and security
 
 ### [paper-world-defaults.yml](https://docs.papermc.io/paper/reference/world-configuration)
 
@@ -109,6 +101,4 @@ fixes:
     fix-curing-zombie-villager-discount-exploit: false
 scoreboards:
     allow-non-player-entities-on-scoreboards: true
-spawn:
-    allow-using-signs-inside-spawn-protection: true
 ```
