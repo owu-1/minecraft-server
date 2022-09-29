@@ -257,7 +257,7 @@ scoreboards:
   allow-non-player-entities-on-scoreboards: true
   use-vanilla-world-scoreboard-name-coloring: false
 spawn:
-  allow-using-signs-inside-spawn-protection: true
+  allow-using-signs-inside-spawn-protection: false
   keep-spawn-loaded: true
   keep-spawn-loaded-range: 10
 tick-rates:
