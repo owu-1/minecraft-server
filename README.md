@@ -18,7 +18,7 @@ difficulty=hard
 BotToken: ${CFG_DISCORDSRV_BOT_TOKEN}
 Channels: {"global": "${CFG_DISCORDSRV_GLOBAL_CHANNEL_ID}"}
 DiscordConsoleChannelId: ${CFG_DISCORDSRV_CONSOLE_CHANNEL_ID}
-DiscordGameStatus: ["on awooo.tk"]
+DiscordGameStatus: ["on ${CFG_HOST}"]
 DiscordConsoleChannelFilters: {".*ERROR DiscordSRV.*": ""}
 Experiment_WebhookChatMessageDelivery: true
 ```
