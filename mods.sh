@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p plugins
 cd plugins || exit
-rm *.jar
+rm ./*.jar
 
 bergerhealer_ci=ci.mg-dev.eu
 lucko_ci=ci.lucko.me
