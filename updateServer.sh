@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git pull
+git pull || exit
 chmod +x mods.sh
 chmod +x updateServer.sh
 chmod +x restart.sh
