@@ -1,6 +1,7 @@
 #!/bin/bash
 mkdir -p plugins
 cd plugins || exit
+rm ./*.jar
 
 github_api=api.github.com
 modrinth_api=api.modrinth.com
