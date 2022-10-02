@@ -13,4 +13,4 @@ github DiscordSRV DiscordSRV "${discordsrv_version}" '^DiscordSRV-Build-\d+\.\d+
 jenkins "${lucko_ci}" spark "${spark_build}" '^spark-\d+.\d+.\d+-bukkit\.jar$'
 jenkins "${lucko_ci}" LuckPerms "${luckperms_build}" '^LuckPerms-Bukkit-\d+.\d+.\d+\.jar$'
 github jpenilla squaremap "${squaremap_version}" '^squaremap-paper-mc.+-\d+\.\d+\.\d+\.jar$'
-modrinth simple-voice-chat "${simple_voice_chat_version}" '^bukkit-${simple_voice_chat_version}$'
+modrinth simple-voice-chat "${simple_voice_chat_version}" "^bukkit-${simple_voice_chat_version}$"
