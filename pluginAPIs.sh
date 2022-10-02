@@ -16,7 +16,7 @@ github() {
     local tag=$3
     local filename_test=$4
     echo "Downloading ${repo}..."
-    curl -sL "${curl -s "https://api.github.com/repos/$owner/$repo/releases/tags/$tag" | jq -r --arg filename_test "$filename_test" ".assets | .[] | select(.name|test($filename_test)).browser_download_url"}" -o "$repo-$tag.jar"
+    curl -sL "$(curl -s "https://api.github.com/repos/$owner/$repo/releases/tags/$tag" | jq -r --arg filename_test "$filename_test" ".assets | .[] | select(.name|test($filename_test)).browser_download_url")" -o "$repo-$tag.jar"
 }
 
 modrinth() {
