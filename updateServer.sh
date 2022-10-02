@@ -1,3 +1,5 @@
+#!/bin/bash
+
 git pull
 chmod +x mods.sh
 chmod +x updateServer.sh
