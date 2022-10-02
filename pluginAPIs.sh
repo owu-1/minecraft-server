@@ -5,12 +5,12 @@
 ghrelease() { local user=$1;local repo=$2;local version=$3;local filename_test=$4;echo "Downloading $repo...";curl --progress-bar -Lo $repo-$version.jar $(curl -s "https://api.github.com/repos/$user/$repo/releases/tags/$version" | jq -r --arg filename_test $filename_test '.assets | .[] | select(.name|test($filename_test)).browser_download_url');}
 
 # Modrinth
-# Usage: modrinth project version filenameTest
-modrinth() { local project=$1;local filename_test=$2;echo "Downloading $project...";curl --progress-bar -Lo $project-$version.jar $(curl -sG "https://api.modrinth.com/v2/project/$project/version" --data-urlencode 'loaders=["$LOADER"]&game_versions=["$VERSION"]' | jq -r --arg filename_test $filename_test '.[] | select(.version_number|test($filename_test)).files[0].url');}
+# Usage: modrinth project filenameTest
+modrinth() { local project=$1;local filename_test=$2;echo "Downloading $project...";curl --progress-bar -Lo $project-$filename_test.jar $(curl -s "https://api.modrinth.com/v2/project/$project/version?loaders=[%22$LOADER%22]&game_versions=[%22$VERSION%22]" | jq -r --arg filename_test $filename_test '.[] | select(.version_number|test($filename_test)).files[0].url');}
 
 # Jenkins
 # Usage: jenkins api project type filenameTest
-jenkins() { local api=$1;local job=$2;local build=$3;local filename_test=$4;file=$(curl -s "$api/job/$job/$build/api/json" | jq -r --arg filename_test $filename_test '.artifacts | .[] | select(.fileName|test($filename_test)).relativePath');echo "Downloading $job...";curl --progress-bar -Lo $job-$build.jar "$api/job/$job/$build/artifact/$file";}
+jenkins() { local api=$1;local job=$2;local build=$3;local filename_test=$4;file=$(curl -s "https://$api/job/$job/$build/api/json" | jq -r --arg filename_test $filename_test '.artifacts | .[] | select(.fileName|test($filename_test)).relativePath');echo "Downloading $job...";curl --progress-bar -Lo $job-$build.jar "https://$api/job/$job/$build/artifact/$file";}
 
 # Latest GitHub Releases
 # Usage: latest_gitrel user repo fileIndex
