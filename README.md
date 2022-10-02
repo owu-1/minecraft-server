@@ -5,7 +5,7 @@
 ### [server.properties](https://minecraft.fandom.com/wiki/Server.properties#Java_Edition_3)
 
 ```properties
-motd=${CFG_MOTD}
+motd=${CFG_HOST}
 spawn-protection=0
 difficulty=hard
 ```
