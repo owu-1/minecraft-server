@@ -10,7 +10,7 @@ modrinth() { local project=$1;local filename_test=$2;echo "Downloading $project.
 
 # Jenkins
 # Usage: jenkins api project type filenameTest
-jenkins() { local api=$1;local job=$2;local build=$3;local filename_test=$4;echo "Downloading $job...";curl --progress-bar -Lo $job-$build.jar "$api/job/$job/$build/artifact/$(curl -s "$api/job/$job/$build/api/json" | jq -r --arg filename_test $filename_test '.artifacts | .[] | select(.fileName|test($filename_test)).relativePath')";}
+jenkins() { local api=$1;local job=$2;local build=$3;local filename_test=$4;echo "Downloading $job...";curl -Lo $job-$build.jar "$api/job/$job/$build/artifact/$(curl -s "$api/job/$job/$build/api/json" | jq -r --arg filename_test $filename_test '.artifacts | .[] | select(.fileName|test($filename_test)).relativePath')";}
 
 # Latest GitHub Releases
 # Usage: latest_gitrel user repo fileIndex
