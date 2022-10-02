@@ -24,8 +24,8 @@ jenkins() {
     local job=$2
     local build=$3
     local filename_test=$4
-    relative_path=$(curl -s https://"$jenkins_server"/job/"${job}"/"${build}"/api/json | jq -r --arg filename_test "${filename_test}" '.artifacts | .[] | select(.fileName|test($filename_test)).relativePath')
-    echo "${jenkins_server}/job/${job}/${build}/artifact/${relative_path}"
+    relative_path=$(curl -s "https://$jenkins_server/job/$job/$build/api/json" | jq -r --arg filename_test "$filename_test" '.artifacts | .[] | select(.fileName|test($filename_test)).relativePath')
+    echo "$jenkins_server/job/$job/$build/artifact/$relative_path"
 }
 
 github() {
@@ -33,13 +33,13 @@ github() {
     local repo=$2
     local tag=$3
     local filename_test=$4
-    curl "https://${github_api}/repos/${owner}/${repo}/releases/tags/v${tag}" | jq -r --arg filename_test "${filename_test}" '.assets | .[] | select(.name|test($filename_test)).browser_download_url'
+    curl "https://$github_api/repos/$owner/$repo/releases/tags/v$tag" | jq -r --arg filename_test "$filename_test" '.assets | .[] | select(.name|test($filename_test)).browser_download_url'
 }
 
 modrinth() {
     local project_id=$1
     local filename_test=$2
-    curl -G "https://${modrinth_api}/v2/project/${project_id}/version" --data-urlencode 'loaders=["bukkit"]' | jq -r --arg filename_test "${filename_test}" '.[] | select(.version_number|test($filename_test)).files[0].url'
+    curl -G "https://$modrinth_api/v2/project/$project_id/version" --data-urlencode 'loaders=["bukkit"]' | jq -r --arg filename_test "$filename_test" '.[] | select(.version_number|test($filename_test)).files[0].url'
 }
 
 echo Downloading MyWorlds
@@ -63,5 +63,5 @@ curl -L "$(jenkins ${lucko_ci} LuckPerms ${luckperms_build} '^LuckPerms-Bukkit-\
 echo Downloading squaremap
 curl -L "$(github jpenilla squaremap ${squaremap_version} '^squaremap-paper-mc.+-\d+\.\d+\.\d+\.jar$')" -o squaremap-${squaremap_version}.jar
 
-echo Downloading simple voice chat
+echo Downloading SimpleVoiceChat
 curl -L "$(modrinth simple-voice-chat ^bukkit-${simple_voice_chat_version}$)" -o simple-voice-chat-${simple_voice_chat_version}.jar
