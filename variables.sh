@@ -1,5 +1,8 @@
 #!/bin/bash
 
+VERSION=1.19.2
+LOADER=bukkit
+
 bergerhealer_ci=ci.mg-dev.eu
 lucko_ci=ci.lucko.me
 
