@@ -1,10 +1,11 @@
 #!/bin/bash
+
+source ./variables.sh
+source ./pluginAPIs.sh             # todo: Unnecessary filename tests
+
 mkdir -p plugins
 cd plugins || exit
 rm ./*.jar
-
-source ../variables.sh
-source ../pluginAPIs.sh             # todo: Unnecessary filename tests
 
 jenkins ${bergerhealer_ci} MyWorlds ${myworlds_build} '^MyWorlds-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
 jenkins ${bergerhealer_ci} BKCommonLib ${bkcommonlib_build} '^BKCommonLib-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
