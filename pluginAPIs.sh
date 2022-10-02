@@ -22,4 +22,4 @@ latest_modrinth() { echo "Downloading $1...";curl -sLo $1.jar $(curl -s "https:/
 
 # Latest Jenkins
 # Usage: latest_jenkins api project filenameTest
-latest_jenkins(){ echo "Downloading $2...";local file=$(curl -s "$1/job/$2/lastSuccessfulBuild/api/json" | jq -r --arg filename_test $3 '.artifacts | .[] | select(.fileName|test($3)).relativePath');curl -sLo $file "$1/job/$2/lastSuccessfulBuild/artifact/$file";}
+latest_jenkins(){ echo "Downloading $2...";local file=$(curl -s "$1/job/$2/lastSuccessfulBuild/api/json" | jq -r --arg filename_test $3 '.artifacts | .[] | select(.fileName|test($3)).relativePath' | cut -d ' ' -f1);curl -sLo $file "$1/job/$2/lastSuccessfulBuild/artifact/$file";}
