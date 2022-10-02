@@ -11,7 +11,7 @@ jenkins ${bergerhealer_ci} MyWorlds ${myworlds_build} '^MyWorlds-.+-v\d+-(?:SNAP
 jenkins ${bergerhealer_ci} BKCommonLib ${bkcommonlib_build} '^BKCommonLib-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
 ghrelease PlayPro CoreProtect ${coreprotect_version} '^CoreProtect-\d+\.\d+\.jar$'
 ghrelease DiscordSRV DiscordSRV ${discordsrv_version} '^DiscordSRV-Build-\d+\.\d+\.\d+\.jar$'
-jenkins ${lucko_ci} spark ${spark_build} '^spark-\d+.\d+.\d+-bukkit\.jar$'
-jenkins ${lucko_ci} LuckPerms ${luckperms_build} '^LuckPerms-Bukkit-\d+.\d+.\d+\.jar$'
+jenkins ${lucko_ci} spark ${spark_build} '^spark-\d+.\d+.\d+\d+-bukkit.jar$'
+jenkins ${lucko_ci} LuckPerms ${luckperms_build} '^LuckPerms-Bukkit-\d+.\d+.\d+\d+.jar$'
 ghrelease jpenilla squaremap ${squaremap_version} '^squaremap-paper-mc.+-\d+\.\d+\.\d+\.jar$'
-modrinth simple-voice-chat ${simple_voice_chat_version} '^bukkit-${simple_voice_chat_version}$'
+modrinth simple-voice-chat bukkit-$simple_voice_chat_version
