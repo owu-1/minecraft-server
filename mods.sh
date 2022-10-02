@@ -3,8 +3,6 @@ mkdir -p plugins
 cd plugins || exit
 rm *.jar
 
-github_api=api.github.com
-modrinth_api=api.modrinth.com
 bergerhealer_ci=ci.mg-dev.eu
 lucko_ci=ci.lucko.me
 
@@ -33,13 +31,13 @@ github() {
     local repo=$2
     local tag=$3
     local filename_test=$4
-    curl "https://$github_api/repos/$owner/$repo/releases/tags/v$tag" | jq -r --arg filename_test "$filename_test" '.assets | .[] | select(.name|test($filename_test)).browser_download_url'
+    curl "https://api.github.com/repos/$owner/$repo/releases/tags/v$tag" | jq -r --arg filename_test "$filename_test" '.assets | .[] | select(.name|test($filename_test)).browser_download_url'
 }
 
 modrinth() {
     local project_id=$1
     local filename_test=$2
-    curl -G "https://$modrinth_api/v2/project/$project_id/version" --data-urlencode 'loaders=["bukkit"]' | jq -r --arg filename_test "$filename_test" '.[] | select(.version_number|test($filename_test)).files[0].url'
+    curl -G "https://api.modrinth.com/v2/project/$project_id/version" --data-urlencode 'loaders=["bukkit"]' | jq -r --arg filename_test "$filename_test" '.[] | select(.version_number|test($filename_test)).files[0].url'
 }
 
 echo Downloading MyWorlds
