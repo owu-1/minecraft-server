@@ -1,17 +1,19 @@
 #!/bin/bash
 
+# shellcheck disable=SC1091
 source ./variables.sh
-source ./pluginAPIs.sh             # todo: Unnecessary filename tests
+source ./pluginAPIs.sh
 
 mkdir -p plugins
 cd plugins || exit
 rm ./*.jar
 
-jenkins ${bergerhealer_ci} MyWorlds ${myworlds_build} '^MyWorlds-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
-jenkins ${bergerhealer_ci} BKCommonLib ${bkcommonlib_build} '^BKCommonLib-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
-ghrelease PlayPro CoreProtect ${coreprotect_version} '^CoreProtect-\d+\.\d+\.jar$'
-ghrelease DiscordSRV DiscordSRV ${discordsrv_version} '^DiscordSRV-Build-\d+\.\d+\.\d+\.jar$'
-jenkins ${lucko_ci} spark ${spark_build} '^spark-\d+.\d+.\d+\d+-bukkit.jar$'
-jenkins ${lucko_ci} LuckPerms ${luckperms_build} '^LuckPerms-Bukkit-\d+.\d+.\d+\d+.jar$'
-ghrelease jpenilla squaremap ${squaremap_version} '^squaremap-paper-mc.+-\d+\.\d+\.\d+\.jar$'
-modrinth simple-voice-chat bukkit-$simple_voice_chat_version
+# todo: Unnecessary filename tests
+jenkins "$BERGERHEALER_CI" MyWorlds "$MYWORLDS_BUILD" '^MyWorlds-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
+jenkins "$BERGERHEALER_CI" BKCommonLib "$BKCOMMONLIB_BUILD" '^BKCommonLib-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
+ghrelease PlayPro CoreProtect "$COREPROTECT_VERSION" '^CoreProtect-\d+\.\d+\.jar$'
+ghrelease DiscordSRV DiscordSRV "$DISCORDSRV_VERSION" '^DiscordSRV-Build-\d+\.\d+\.\d+\.jar$'
+jenkins "$LUCKO_CI" spark "$SPARK_BUILD" '^spark-\d+.\d+.\d+\d+-bukkit.jar$'
+jenkins "$LUCKO_CI" LuckPerms "$LUCKPERMS_BUILD" '^LuckPerms-Bukkit-\d+.\d+.\d+\d+.jar$'
+ghrelease jpenilla squaremap "$SQUAREMAP_VERSION" '^squaremap-paper-mc.+-\d+\.\d+\.\d+\.jar$'
+modrinth simple-voice-chat "bukkit-$SIMPLE_VOICE_CHAT_VERSION"

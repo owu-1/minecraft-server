@@ -3,14 +3,14 @@
 VERSION=1.19.2
 LOADER=bukkit
 
-bergerhealer_ci=ci.mg-dev.eu
-lucko_ci=ci.lucko.me
+BERGERHEALER_CI=ci.mg-dev.eu
+LUCKO_CI=ci.lucko.me
 
-myworlds_build=175                    # Build must be >=159 to support rejoin world groups with /world lastposition merge [world1] [world2] ...
-bkcommonlib_build=1393                # Build must be >=1386 to avoid error messages - https://github.com/bergerhealer/BKCommonLib/issues/147
-coreprotect_version=v21.2
-discordsrv_version=v1.26.0
-spark_build=340
-luckperms_build=1456
-squaremap_version=v1.1.8
-simple_voice_chat_version=1.19.2-2.3.10
+MYWORLDS_BUILD=175         # Build must be >=159 to support rejoin world groups with /world lastposition merge [world1] [world2] ...
+BKCOMMONLIB_BUILD=1393     # Build must be >=1386 to avoid error messages - https://github.com/bergerhealer/BKCommonLib/issues/147
+COREPROTECT_VERSION=v21.2
+DISCORDSRV_VERSION=v1.26.0
+SPARK_BUILD=340
+LUCKPERMS_BUILD=1456
+SQUAREMAP_VERSION=v1.1.8
+SIMPLE_VOICE_CHAT_VERSION=1.19.2-2.3.10
