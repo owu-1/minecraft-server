@@ -24,11 +24,3 @@ services:
     restart: unless-stopped
     command: tunnel --no-autoupdate run
     env_file: ./secrets/cloudflare-secrets.env
-  backup:
-    container_name: backup
-    image: offen/docker-volume-backup:v2
-    restart: unless-stopped
-    env_file: ./backup.env
-    volumes:
-      - ./data:/backup/data:z,ro
-      - ./backups:/archive
