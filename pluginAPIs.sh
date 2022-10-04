@@ -15,7 +15,7 @@ download() {
 # $3 - tag: The release tag
 # $4 - pattern: A regex pattern matching the filename of the asset
 ghrelease() {
-    url=$(curl -s "https://api.github.com/repos/$1/$2/releases/tags/$3" | jq -r --arg filename_test "$4" '.assets | .[] | select(.name|test($filename_test)).browser_download_url')
+    url=$(curl -s "https://api.github.com/repos/$1/$2/releases/tags/$3" | jq -r --arg pattern "$4" '.assets | .[] | select(.name|test($pattern)).browser_download_url')
     download "$url" "$2-$3.jar"
 }
 
@@ -25,7 +25,7 @@ ghrelease() {
 # $2 - version
 # $2 - pattern: A regex pattern matching the version number
 modrinth() {
-    url=$(curl -s "https://api.modrinth.com/v2/project/$1/version?loaders=[%22$LOADER%22]&game_versions=[%22$VERSION%22]" | jq -r --arg filename_test "$3" '.[] | select(.version_number|test($filename_test)).files[0].url')
+    url=$(curl -s "https://api.modrinth.com/v2/project/$1/version?loaders=[%22$LOADER%22]&game_versions=[%22$VERSION%22]" | jq -r --arg pattern "$3" '.[] | select(.version_number|test($pattern)).files[0].url')
     download "$url" "$1-$2.jar"
 }
 
@@ -36,6 +36,6 @@ modrinth() {
 # $4 - pattern: A regex pattern matching the filename
 jenkins() {
     build_url="https://$1/job/$2/$3"
-    relative_path=$(curl -s "$build_url/api/json" | jq -r --arg filename_test "$4" '.artifacts | .[] | select(.fileName|test($filename_test)).relativePath')
+    relative_path=$(curl -s "$build_url/api/json" | jq -r --arg pattern "$4" '.artifacts | .[] | select(.fileName|test($pattern)).relativePath')
     download "$build_url/artifact/$relative_path" "$2-$3.jar" 
 }
