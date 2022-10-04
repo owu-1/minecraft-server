@@ -16,4 +16,4 @@ ghrelease DiscordSRV DiscordSRV "$DISCORDSRV_VERSION" '^DiscordSRV-Build-\d+\.\d
 jenkins "$LUCKO_CI" spark "$SPARK_BUILD" '^spark-\d+.\d+.\d+\d+-bukkit.jar$'
 jenkins "$LUCKO_CI" LuckPerms "$LUCKPERMS_BUILD" '^LuckPerms-Bukkit-\d+.\d+.\d+\d+.jar$'
 ghrelease jpenilla squaremap "$SQUAREMAP_VERSION" '^squaremap-paper-mc.+-\d+\.\d+\.\d+\.jar$'
-modrinth simple-voice-chat "bukkit-$SIMPLE_VOICE_CHAT_VERSION"
+modrinth simple-voice-chat "$SIMPLE_VOICE_CHAT_VERSION" "bukkit-$SIMPLE_VOICE_CHAT_VERSION"
