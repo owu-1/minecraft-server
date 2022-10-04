@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # shellcheck disable=SC1091
-source ./variables.sh
 source ./plugin.env
+source ./pluginAPIs.sh
 
 mkdir -p plugins
 cd plugins || exit
