@@ -25,7 +25,7 @@ ghrelease() {
 # $2 - version
 # $2 - pattern: A regex pattern matching the version number
 modrinth() {
-    url=$(curl -s "https://api.modrinth.com/v2/project/$1/version?loaders=[%22$LOADER%22]&game_versions=[%22$VERSION%22]" | jq -r --arg pattern "$3" '.[] | select(.version_number|test($pattern)).files[0].url')
+    url=$(curl -s "https://api.modrinth.com/v2/project/$1/version" | jq -r --arg pattern "$3" '.[] | select(.version_number|test($pattern)).files[0].url')
     download "$url" "$1-$2.jar"
 }
 
