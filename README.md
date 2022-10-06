@@ -19,13 +19,13 @@ BotToken: ${CFG_DISCORDSRV_BOT_TOKEN}
 Channels: {"global": "${CFG_DISCORDSRV_GLOBAL_CHANNEL_ID}"}
 DiscordConsoleChannelId: ${CFG_DISCORDSRV_CONSOLE_CHANNEL_ID}
 DiscordGameStatus: ["on ${CFG_HOST}"]
-DiscordConsoleChannelFilters: {".*ERROR DiscordSRV.*": ""}
+DiscordConsoleChannelFilters: {"^\\[DiscordSRV\\]  at .+$": ""}
 Experiment_WebhookChatMessageDelivery: true
 ```
 
 #### [DiscordConsoleChannelFilters](https://docs.discordsrv.com/config/#DiscordConsoleChannelFilters)
 
-Hide error messages when the internet drops out
+Hide DiscordSRV stacktraces when the internet drops out
 
 ### [messages.yml](https://docs.discordsrv.com/messages)
 
