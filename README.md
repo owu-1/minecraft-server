@@ -19,7 +19,7 @@ BotToken: ${CFG_DISCORDSRV_BOT_TOKEN}
 Channels: {"global": "${CFG_DISCORDSRV_GLOBAL_CHANNEL_ID}"}
 DiscordConsoleChannelId: ${CFG_DISCORDSRV_CONSOLE_CHANNEL_ID}
 DiscordGameStatus: ["on ${CFG_HOST}"]
-DiscordConsoleChannelFilters: {"^\\[DiscordSRV\\]  at .+$": ""}
+DiscordConsoleChannelFilters: {"^\\[DiscordSRV\\]  at .+$": "","^\\[... ..:..:.. ERROR DiscordSRV\\].*$":""}
 Experiment_WebhookChatMessageDelivery: true
 ```
 
