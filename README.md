@@ -1,19 +1,29 @@
-# Config
+## Configuration
+<details>
+    <summary>Minecraft</summary>
 
-## Minecraft
+---
+<details>
+    <summary>server.properties</summary>
 
-### [server.properties](https://minecraft.fandom.com/wiki/Server.properties#Java_Edition_3)
-
+*[Documentation](https://minecraft.fandom.com/wiki/Server.properties#Java_Edition_3)*
 ```properties
 motd=${CFG_HOST}
 spawn-protection=0
 difficulty=hard
 ```
+</details>
 
-## DiscordSRV
+---
+</details>
+<details>
+    <summary>DiscordSRV</summary>
 
-### [config.yml](https://docs.discordsrv.com/config)
+---
+<details>
+    <summary>config.yml</summary>
 
+*[Documentation](https://docs.discordsrv.com/config)*
 ```yaml
 BotToken: ${CFG_DISCORDSRV_BOT_TOKEN}
 Channels: {"global": "${CFG_DISCORDSRV_GLOBAL_CHANNEL_ID}"}
@@ -21,54 +31,74 @@ DiscordConsoleChannelId: ${CFG_DISCORDSRV_CONSOLE_CHANNEL_ID}
 DiscordGameStatus: ["on ${CFG_HOST}"]
 Experiment_WebhookChatMessageDelivery: true
 ```
+</details>
+<details>
+    <summary>messages.yml</summary>
 
-### [messages.yml](https://docs.discordsrv.com/messages)
-
+*[Documentation](https://docs.discordsrv.com/messages)*
 ```yaml
 DiscordChatChannelServerStartupMessage: ""
 DiscordChatChannelServerShutdownMessage: ""
 ServerWatchdogMessage: "<t:%timestamp%:R> <@${CFG_DISCORDSRV_USERID}>, the server hasn't ticked in %timeout% seconds :fire::bangbang:"
 ```
+<details>
+    <summary>Glossary</summary>
 
-#### [DiscordChatChannelServerStartupMessage](https://docs.discordsrv.com/messages/#DiscordChatChannelServerStartupMessage)
+- *[DiscordChatChannelServerStartupMessage](https://docs.discordsrv.com/messages/#DiscordChatChannelServerStartupMessage)*
+	* Disable server startup messages
+- *[DiscordChatChannelServerShutdownMessage](https://docs.discordsrv.com/messages/#DiscordChatChannelServerShutdownMessage)*
+	* Disable server shutdown messages
+- *[ServerWatchdogMessage](https://docs.discordsrv.com/messages/#ServerWatchdogMessage)*
+	* Send server watchdog message to a custom userID
+</details>
+</details>
 
-Disable server startup messages
+---
+</details>
+<details>
+    <summary>MyWorlds</summary>
 
-#### [DiscordChatChannelServerShutdownMessage](https://docs.discordsrv.com/messages/#DiscordChatChannelServerShutdownMessage)
+---
+<details>
+    <summary>config.yml</summary>
 
-Disable server shutdown messages
-
-#### [ServerWatchdogMessage](https://docs.discordsrv.com/messages/#ServerWatchdogMessage)
-
-Send server watchdog message to a custom userID
-
-## MyWorlds
-
-### [config.yml](https://wiki.traincarts.net/p/MyWorlds/Configuration)
-
+*[Documentation](https://wiki.traincarts.net/p/MyWorlds/Configuration)*
 ```yaml
 useWorldInventories: true
 mainWorld: "lobby"
 ```
+<details>
+    <summary>Glossary</summary>
 
-#### useWorldInventories
+- *useWorldInventories*
+	* Make all worlds hold their own inventory state. This is done to later merge world inventories.
+</details>
+</details>
+<details>
+    <summary>defaultproperties.yml</summary>
 
-Make all worlds hold their own inventory state. This is done to later merge world inventories
-
-### [defaultproperties.yml](https://wiki.traincarts.net/p/MyWorlds/WorldConfiguration)
-
+*[Documentation](https://wiki.traincarts.net/p/MyWorlds/WorldConfiguration)*
 ```yaml
 keepSpawnLoaded: false
 ```
+<details>
+    <summary>Glossary</summary>
 
-#### keepSpawnLoaded
+- *keepSpawnLoaded*
+	* Don't waste memory keeping spawn areas loaded!
+</details>
+</details>
 
-Don't waste memory keeping spawn areas loaded
+---
+</details>
+<details>
+    <summary>PaperMC</summary>
 
-## PaperMC
+---
+<details>
+    <summary>paper-global.yml</summary>
 
-### [paper-global.yml](https://docs.papermc.io/paper/reference/global-configuration)
-
+*[Documentation](https://docs.papermc.io/paper/reference/global-configuration)*
 ```yaml
 timings:
     enabled: false
@@ -78,13 +108,17 @@ unsupported-settings:
     allow-headless-pistons: true
     allow-permanent-block-break-exploits: true
 ```
+<details>
+    <summary>Glossary</summary>
 
-#### [timings.enabled](https://docs.papermc.io/paper/reference/global-configuration#enabled-1)
+- *[timings.enabled](https://docs.papermc.io/paper/reference/global-configuration#enabled-1)*
+	* Use spark instead of timings for performance profiling
+</details>
+</details>
+<details>
+	<summary>paper-world-defaults.yml</summary>
 
-Use spark instead of timings for performance profiling
-
-### [paper-world-defaults.yml](https://docs.papermc.io/paper/reference/world-configuration)
-
+*[Documentation](https://docs.papermc.io/paper/reference/world-configuration)*
 ```yaml
 anticheat:
     anti-xray.enabled: true
@@ -97,3 +131,13 @@ fixes:
 scoreboards:
     allow-non-player-entities-on-scoreboards: true
 ```
+</details>
+
+---
+</details>
+
+---
+<details>
+	<summary>Data Packs</summary>
+
+</details>
