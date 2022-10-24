@@ -138,6 +138,21 @@ scoreboards:
 
 ---
 </details>
+<details>
+	<summary>Voice Chat</summary>
+
+---
+<details>
+	<summary>voicechat-server.properties</summary>
+
+*[Documentation](https://modrepo.de/minecraft/voicechat/wiki/?t=configuration)*
+```properties
+open_groups=true
+allow_recording=true
+enable_groups=true
+```
+</details>
+</details>
 
 ---
 <details>
