@@ -140,4 +140,18 @@ scoreboards:
 <details>
 	<summary>Data Packs</summary>
 
+- *Classic Fishing Loot*
+	* Reverts the fishing loot back to its pre-1.16 loot table.
+- *Coordinates HUD*
+	* Adds information to your action bar (XYZ coords and a 24 hour clock).
+		* `/trigger ch_toggle`
+- *Name Colours*
+	* Allows the player to change the colour of their username in chat and in-game.
+		* `/trigger color`
+- *Nether Portal Coords*
+	* Adds a trigger that calculates where a nether portal must be placed in the **other** dimension. Useful for syncing up nether portals.
+		* `/trigger nc_overworld/nc_nether`
+- *Transfer Enchantments 2 (Books Edition)*
+	* Allows the player to transfer enchantments from their items onto books.
+		* Throw the item and a book on top of an anvil (not inside it) and the item enchantments will be transferred to the book.
 </details>
