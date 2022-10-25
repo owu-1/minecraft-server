@@ -146,8 +146,10 @@ scoreboards:
 
 *[Documentation](https://modrepo.de/minecraft/voicechat/wiki/?t=configuration)*
 ```properties
+bind_address=
 open_groups=true
 allow_recording=true
+port=-1
 enable_groups=true
 ```
 </details>
