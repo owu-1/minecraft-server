@@ -8,7 +8,6 @@
 
 *[Documentation](https://minecraft.fandom.com/wiki/Server.properties#Java_Edition_3)*
 ```properties
-enable-query=true
 motd=${CFG_HOST}
 spawn-protection=0
 difficulty=hard
