@@ -13,6 +13,7 @@ jenkins "$BERGERHEALER_CI" MyWorlds "$MYWORLDS_BUILD" '^MyWorlds-.+-v\d+-(?:SNAP
 jenkins "$BERGERHEALER_CI" BKCommonLib "$BKCOMMONLIB_BUILD" '^BKCommonLib-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
 ghrelease PlayPro CoreProtect "$COREPROTECT_VERSION" '^CoreProtect-\d+\.\d+\.jar$'
 ghrelease DiscordSRV DiscordSRV "$DISCORDSRV_VERSION" '^DiscordSRV-Build-\d+\.\d+\.\d+\.jar$'
+ghrelease EssentialsX Essentials "$ESSENTIALSX_VERSION" '^EssentialsX-\d+\.\d+\.\d+\.jar$'
 ghrelease oliverdunk JukeboxAPI "$JUKEBOXAPI_VERSION" '^MCJukebox.jar$'
 jenkins "$LUCKO_CI" spark "$SPARK_BUILD" '^spark-\d+.\d+.\d+\d+-bukkit.jar$'
 jenkins "$LUCKO_CI" LuckPerms "$LUCKPERMS_BUILD" '^LuckPerms-Bukkit-\d+.\d+.\d+\d+.jar$'
