@@ -10,7 +10,7 @@ deniedCreatures: []
 hunger: true
 formIce: true
 formSnow: true
-difficulty: NORMAL
+difficulty: HARD
 reloadWhenEmpty: false
 bedRespawnEnabled: true
 advancementsEnabled: true
