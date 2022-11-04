@@ -109,6 +109,7 @@ scoreboards:
 unsupported-settings:
     allow-headless-pistons: true
     allow-permanent-block-break-exploits: true
+    allow-piston-duplication: true
 ```
 <details>
     <summary>Glossary</summary>
@@ -129,9 +130,12 @@ entities:
         ender-dragons-death-always-places-dragon-egg: true
         parrots-are-unaffected-by-player-movement: true
 fixes:
+    disable-unloaded-chunk-enderpearl-exploit: false
     fix-curing-zombie-villager-discount-exploit: false
 scoreboards:
     allow-non-player-entities-on-scoreboards: true
+spawn:
+    allow-using-signs-inside-spawn-protection: true
 ```
 </details>
 
@@ -146,7 +150,6 @@ scoreboards:
 
 *[Documentation](https://modrepo.de/minecraft/voicechat/wiki/?t=configuration)*
 ```properties
-bind_address=
 open_groups=true
 allow_recording=true
 port=-1
