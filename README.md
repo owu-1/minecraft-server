@@ -138,9 +138,8 @@ spawn:
     allow-using-signs-inside-spawn-protection: true
 ```
 </details>
-
----
 </details>
+---
 <details>
 	<summary>Data Packs</summary>
 
