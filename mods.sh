@@ -14,9 +14,7 @@ jenkins "$BERGERHEALER_CI" BKCommonLib "$BKCOMMONLIB_BUILD" '^BKCommonLib-.+-v\d
 ghrelease PlayPro CoreProtect "$COREPROTECT_VERSION" '^CoreProtect-\d+\.\d+\.jar$'
 ghrelease DiscordSRV DiscordSRV "$DISCORDSRV_VERSION" '^DiscordSRV-Build-\d+\.\d+\.\d+\.jar$'
 ghrelease EssentialsX Essentials "$ESSENTIALSX_VERSION" '^EssentialsX-\d+\.\d+\.\d+\.jar$'
-ghrelease oliverdunk JukeboxAPI "$JUKEBOXAPI_VERSION" '^MCJukebox.jar$'
 ghrelease Mrredstone5230 Not-Too-Expensive "$NOT_TOO_EXPENSIVE_VERSION" '^not-too-expensive-\d+\.\d+\.jar$'
 jenkins "$LUCKO_CI" spark "$SPARK_BUILD" '^spark-\d+.\d+.\d+\d+-bukkit.jar$'
 jenkins "$LUCKO_CI" LuckPerms "$LUCKPERMS_BUILD" '^LuckPerms-Bukkit-\d+.\d+.\d+\d+.jar$'
 ghrelease jpenilla squaremap "$SQUAREMAP_VERSION" '^squaremap-paper-mc.+-\d+\.\d+\.\d+\.jar$'
-modrinth simple-voice-chat "$SIMPLE_VOICE_CHAT_VERSION" "bukkit-$SIMPLE_VOICE_CHAT_VERSION"
