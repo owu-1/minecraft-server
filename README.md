@@ -141,8 +141,6 @@ spawn:
 
 ---
 </details>
-
----
 <details>
 	<summary>Data Packs</summary>
 
