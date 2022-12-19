@@ -23,9 +23,9 @@ ghrelease() {
 # https://docs.modrinth.com/api-spec/#tag/versions/operation/getProjectVersions
 # $1 - id: The ID or slug of the project
 # $2 - version
-# $2 - pattern: A regex pattern matching the version number
+# $3 - pattern: A regex pattern matching the version number
 modrinth() {
-    url=$(curl -s "https://api.modrinth.com/v2/project/$1/version" | jq -r --arg pattern "$3" '.[] | select(.version_number|test($pattern)).files[0].url')
+    url=$(curl -s "https://api.modrinth.com/v2/project/$1/version" | jq -r --arg pattern "$3" '.[] | select(.version_number|test($2)).files[0].url')
     download "$url" "$1-$2.jar"
 }
 
