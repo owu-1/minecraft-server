@@ -17,4 +17,4 @@ ghrelease Mrredstone5230 Not-Too-Expensive "$NOT_TOO_EXPENSIVE_VERSION" '^not-to
 jenkins "$LUCKO_CI" spark "$SPARK_BUILD" '^spark-\d+.\d+.\d+\d+-bukkit.jar$'
 jenkins "$LUCKO_CI" LuckPerms "$LUCKPERMS_BUILD" '^LuckPerms-Bukkit-\d+.\d+.\d+\d+.jar$'
 ghrelease jpenilla squaremap "$SQUAREMAP_VERSION" '^squaremap-paper-mc.+-\d+\.\d+\.\d+\.jar$'
-modrinth 'coreprotect' "$COREPROTECT_VERSION" '^CoreProtect-\d+\.\d+\.jar$'
+modrinth coreprotect "$COREPROTECT_VERSION" '^CoreProtect-\d+\.\d+\.jar$'
