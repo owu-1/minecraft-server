@@ -11,7 +11,6 @@ rm ./*.jar
 # todo: Unnecessary filename tests
 jenkins "$BERGERHEALER_CI" MyWorlds "$MYWORLDS_BUILD" '^MyWorlds-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
 jenkins "$BERGERHEALER_CI" BKCommonLib "$BKCOMMONLIB_BUILD" '^BKCommonLib-.+-v\d+-(?:SNAPSHOT-)?\d+\.jar'
-ghrelease PlayPro CoreProtect "$COREPROTECT_VERSION" 
 ghrelease DiscordSRV DiscordSRV "$DISCORDSRV_VERSION" '^DiscordSRV-Build-\d+\.\d+\.\d+\.jar$'
 ghrelease EssentialsX Essentials "$ESSENTIALSX_VERSION" '^EssentialsX-\d+\.\d+\.\d+\.jar$'
 ghrelease Mrredstone5230 Not-Too-Expensive "$NOT_TOO_EXPENSIVE_VERSION" '^not-too-expensive-\d+\.\d+\.jar$'
