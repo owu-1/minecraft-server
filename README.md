@@ -141,22 +141,6 @@ spawn:
 
 ---
 </details>
-<details>
-	<summary>Voice Chat</summary>
-
----
-<details>
-	<summary>voicechat-server.properties</summary>
-
-*[Documentation](https://modrepo.de/minecraft/voicechat/wiki/?t=configuration)*
-```properties
-open_groups=true
-allow_recording=true
-port=-1
-enable_groups=true
-```
-</details>
-</details>
 
 ---
 <details>
