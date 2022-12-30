@@ -1,9 +1,0 @@
-command-block-overrides: []
-ignore-vanilla-permissions: false
-aliases:
-  lobby:
-    - tpp lobby
-  smp:
-    - world rejoin world
-  creative:
-    - world rejoin creative
