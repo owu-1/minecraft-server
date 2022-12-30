@@ -142,13 +142,22 @@ spawn:
 
 ---
 <details>
+	<summary>Plugins</summary>
+
+- Coreprotect - Log player interactions
+- DiscordSRV - Discord chat
+- EssentialsX - Essentials plugin suite
+- InfoHUD - Coordinates and time on player action bar
+- Not Too Expensive - Remove the 'too expensive' anvil bar
+- Spark - Performance profiler
+- Luckperms - Permissions plugin
+- Squaremap - Map viewer
+</details>
+<details>
 	<summary>Data Packs</summary>
 
 - *Classic Fishing Loot*
 	* Reverts the fishing loot back to its pre-1.16 loot table.
-- *Coordinates HUD*
-	* Adds information to your action bar (XYZ coords and a 24 hour clock).
-		* `/trigger ch_toggle`
 - *Name Colours*
 	* Allows the player to change the colour of their username in chat and in-game.
 		* `/trigger color`
