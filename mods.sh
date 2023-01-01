@@ -10,7 +10,6 @@ rm ./*.jar
 
 # todo: Unnecessary filename tests
 ghrelease DiscordSRV DiscordSRV "v$DISCORDSRV_VERSION" '^DiscordSRV-Build-\d+\.\d+\.\d+\.jar$'
-ghrelease EssentialsX Essentials "$ESSENTIALSX_VERSION" '^EssentialsX-\d+\.\d+\.\d+\.jar$'
 ghrelease Mrredstone5230 Not-Too-Expensive "$NOT_TOO_EXPENSIVE_VERSION" '^not-too-expensive-\d+\.\d+\.jar$'
 jenkins "$LUCKO_CI" spark "$SPARK_BUILD" '^spark-\d+.\d+.\d+\d+-bukkit.jar$'
 jenkins "$LUCKO_CI" LuckPerms "$LUCKPERMS_BUILD" '^LuckPerms-Bukkit-\d+.\d+.\d+\d+.jar$'

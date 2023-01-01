@@ -146,7 +146,6 @@ spawn:
 
 - Coreprotect - Log player interactions
 - DiscordSRV - Discord chat
-- EssentialsX - Essentials plugin suite
 - InfoHUD - Coordinates and time on player action bar
 - Not Too Expensive - Remove the 'too expensive' anvil bar
 - Spark - Performance profiler
