@@ -1,7 +1,7 @@
 services:
   minecraft:
     container_name: minecraft
-    image: itzg/minecraft-server:java17
+    image: itzg/minecraft-server:java19
     restart: unless-stopped
     tty: true
     stdin_open: true
