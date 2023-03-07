@@ -58,42 +58,6 @@ ServerWatchdogMessage: "<t:%timestamp%:R> <@${CFG_DISCORDSRV_USERID}>, the serve
 ---
 </details>
 <details>
-    <summary>MyWorlds</summary>
-
----
-<details>
-    <summary>config.yml</summary>
-
-*[Documentation](https://wiki.traincarts.net/p/MyWorlds/Configuration)*
-```yaml
-useWorldInventories: true
-mainWorld: "lobby"
-```
-<details>
-    <summary>Glossary</summary>
-
-- *useWorldInventories*
-	* Make all worlds hold their own inventory state. This is done to later merge world inventories.
-</details>
-</details>
-<details>
-    <summary>defaultproperties.yml</summary>
-
-*[Documentation](https://wiki.traincarts.net/p/MyWorlds/WorldConfiguration)*
-```yaml
-keepSpawnLoaded: false
-```
-<details>
-    <summary>Glossary</summary>
-
-- *keepSpawnLoaded*
-	* Don't waste memory keeping spawn areas loaded!
-</details>
-</details>
-
----
-</details>
-<details>
     <summary>PaperMC</summary>
 
 ---
